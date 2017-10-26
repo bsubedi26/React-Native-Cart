@@ -1,10 +1,7 @@
 import React from 'react';
-import { View, Platform, ScrollView, Text, StyleSheet } from 'react-native';
-import { Card, Button } from 'react-native-elements';
-import { TabNavigator } from 'react-navigation';
-import AppWithNavigationState from './src/navigators/AppNavigator';
+import { Provider } from 'react-redux';
 
-import { Provider, connect } from 'react-redux';
+import AppWithNavigationState from './src/navigators/AppNavigator';
 import createStore from './src/util/createStore';
 
 const { store } = createStore()
