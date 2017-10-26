@@ -3,7 +3,7 @@ const initState = {
     Credentials: {}
 }
 
-export default (state = initState, { type, payload }) => {
+export function reducer (state = initState, { type, payload }) {
     switch (type) {
         case 'SET_USER': {
             return {

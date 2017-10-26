@@ -1,14 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import { ScrollView } from 'react-native'
+import { bindActionCreators } from 'redux';
+import { View, ScrollView, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-
+import { connect } from 'react-redux'
+import { Card } from 'react-native-elements'
 import TopHeader from '../components/TopHeader'
 import CardContent from '../components/CardContent'
+import Phones from '../components/Phones'
+import { addToCart } from '../actions/shopping'
 
 class HomeScreen extends React.Component {
     static propTypes = {
-        navigation: PropTypes.object.isRequired
+        navigation: PropTypes.object.isRequired,
+        phones: PropTypes.array.isRequired,
     }
     static navigationOptions = {
         tabBarLabel: 'Home',
@@ -21,14 +26,34 @@ class HomeScreen extends React.Component {
         ),
     };
 
+    componentDidMount() {
+        // this.props.navigation.navigate('DrawerOpen');
+    }
+
     render() {
         return (
-            <ScrollView>
+            <View style={s.container}>
                 <TopHeader />
-                <CardContent title="Home" navigation={this.props.navigation} />
-            </ScrollView>
+                <View>
+                    <Phones {...this.props}/>
+                </View>
+                {/* <CardContent title="Home" navigation={this.props.navigation} /> */}
+            </View>
         )
     }
 }
 
-export default HomeScreen
+const s = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+})
+
+const mapState = (state) => ({
+    phones: state.shopping.phones
+})
+const mapAction = (dispatch) => ({
+    addToCart: bindActionCreators(addToCart, dispatch)
+})
+
+export default connect(mapState, mapAction)(HomeScreen)
