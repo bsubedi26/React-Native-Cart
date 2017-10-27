@@ -1,25 +1,20 @@
 import React from 'react';
-import { View, Platform, ScrollView, Text, StyleSheet } from 'react-native';
-import { Card, Button } from 'react-native-elements';
-import { TabNavigator } from 'react-navigation';
-
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addNavigationHelpers, StackNavigator } from 'react-navigation';
+import { TabNavigator, addNavigationHelpers, StackNavigator } from 'react-navigation';
 
 import HomeScreen from '../containers/home';
-import ChatScreen from '../containers/chat';
+import CartScreen from '../containers/cart';
 import SettingsScreen from '../containers/settings';
-
 
 const rootRoutes = {
   Home: {
     screen: HomeScreen,
     path: '',
   },
-  Chat: {
-    screen: ChatScreen,
-    path: 'chat',
+  Cart: {
+    screen: CartScreen,
+    path: 'cart',
   },
   Settings: {
     screen: SettingsScreen,

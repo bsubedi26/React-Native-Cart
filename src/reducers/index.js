@@ -1,11 +1,8 @@
 import { combineReducers } from "redux";
-import user from "./user";
-import nav from "./nav";
-import auth from "./auth";
-
 
 export default combineReducers({
-    user,
-    nav,
-    auth
+    user: require('./user').reducer,
+    nav: require('./nav').reducer,
+    auth: require('./auth').reducer,
+    shopping: require('./shopping').reducer
 });
