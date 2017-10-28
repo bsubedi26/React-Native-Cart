@@ -11,7 +11,7 @@ import { Font } from 'expo'
 import { inject, observer } from 'mobx-react'
 
 @inject('shopping')
-@observer
+// @observer
 class HomeScreen extends React.Component {
     static propTypes = {
         navigation: PropTypes.object.isRequired,

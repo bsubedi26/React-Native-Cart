@@ -23,6 +23,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "autobind-decorator": "^2.1.0",
     "expo": "^21.0.0",
     "lodash": "^4.17.4",
     "mobx": "^3.3.1",

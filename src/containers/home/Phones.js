@@ -1,25 +1,27 @@
 import React from 'react'
 import styled from 'styled-components/native';
+import autobind from 'autobind-decorator'
 import { Text, TextInput, FlatList, ScrollView, View, Image, Dimensions } from 'react-native'
 import { Button, Card } from 'react-native-elements'
-import { RkButton } from 'react-native-ui-kitten';
-import { Entypo } from '@expo/vector-icons';
+import { RkButton } from 'react-native-ui-kitten'
+import { Entypo } from '@expo/vector-icons'
 
 const { width, height } = Dimensions.get('window')
 
+@autobind
 class Phones extends React.Component {
-    state = {
-        quantity: "1"
+    constructor() {
+        super()
+        this.state = {
+            quantity: "1"
+        }
     }
  
     handleAddCart(phone) {
-        phone.quantity = parseInt(this.state.quantity)
-        this.props.shopping.cartAdd(phone)
+        const quantity = parseInt(this.state.quantity)
+        this.props.shopping.cartAdd(phone, quantity)
     }
-    
-    _quantityChange(quantity) {
-        this.setState({ quantity })
-    }
+
     _increment() {
         const result = parseInt(this.state.quantity) + 1
         this.setState({
@@ -44,15 +46,14 @@ class Phones extends React.Component {
                             <Text style={{padding: 3, backgroundColor: '#c9c0d1', width: 100, height: 25, textAlign: 'center'}}>{item.name}</Text>
                             <Image style={{marginTop: 6, marginBottom: 6, width: 150, height: 150}} source={ item.src } />
 
-                            <Entypo size={22} onPress={this._decrement.bind(this)} name="squared-minus"></Entypo>
+                            <Entypo size={22} onPress={this._decrement} name="squared-minus"></Entypo>
                             <TextInput
                                 style={{width: 100, textAlign: 'center', padding: 5}}
                                 keyboardType = 'numeric'
-                                onChangeText={this._quantityChange.bind(this)}
                                 value={this.state.quantity}
-                                disabled={true}
+                                editable={false}
                             />
-                            <Entypo size={22} onPress={this._increment.bind(this)} name="squared-plus"></Entypo>
+                            <Entypo size={22} onPress={this._increment} name="squared-plus"></Entypo>
 
                             <RkButton onPress={this.handleAddCart.bind(this, item)} style={{padding: 20}}>Add Cart</RkButton>
                             <RkButton style={{marginTop: 8}} rkType="danger">Details</RkButton>
@@ -72,6 +73,17 @@ class Phones extends React.Component {
         )
     }
 }
+
+
+const Large = styled.Text`
+    color: #f3f3f3;
+    backgroundColor: cornflowerblue;
+    font-size: 120px;
+    font-family: 'Baskerville';
+    font-style: italic;
+    line-height: 144px;
+    text-align: center;
+`
 
 const Container = styled.View`
     flex: 1;
