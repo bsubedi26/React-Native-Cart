@@ -1,15 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import styled from 'styled-components/native'
-// import { bindActionCreators } from 'redux';
 import { Text, View, ScrollView } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { connect } from 'react-redux'
 import { Card } from 'react-native-elements'
 import TopHeader from '../components/TopHeader'
 import CardContent from '../components/CardContent'
 import Phones from './home/Phones'
-import * as shopping from '../reducers/shopping'
 import { Font } from 'expo'
 import { inject, observer } from 'mobx-react'
 
@@ -65,15 +62,5 @@ const Container = styled.View`
 const PhonesContainer = styled.View`
     marginTop: 20px;
 `
-
-
-// const mapState = (state) => ({
-//     phones: state.shopping.phones
-// })
-// const mapAction = (dispatch) => ({
-//     shoppingAction: bindActionCreators(shopping, dispatch)
-// })
-
-// export default connect(mapState, mapAction)(HomeScreen)
 
 export default HomeScreen;

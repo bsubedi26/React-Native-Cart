@@ -1,9 +1,8 @@
 import React from 'react';
-import { Provider } from 'mobx-react';
+import { Provider, inject, observer } from 'mobx-react';
 import { Font, AppLoading } from 'expo';
 import AppWithNavigationState from './src/navigators/AppNavigator';
-import store from './src/store/index';
-import { inject, observer } from 'mobx-react';
+import store from './src/store';
 
 
 export default class App extends React.Component {

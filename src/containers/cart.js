@@ -1,14 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Image, ScrollView, View, Text, TouchableHighlight } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { bindActionCreators } from 'redux'
-import { RkButton } from 'react-native-ui-kitten'
 
 import TopHeader from '../components/TopHeader'
 import CardContent from '../components/CardContent'
-import * as shopping from '../reducers/shopping'
 import { inject, observer } from 'mobx-react'
 
 @inject('shopping')
@@ -84,30 +80,5 @@ class CartScreen extends React.Component {
   }
 
 };
-
-
-// const mapState = (state) => {
-// const totalPrice = state =>  {
-//   const price = state.cart
-//   .map((item, index) => {
-//     const price = item.quantity * item.product.price
-//     return price.toFixed(2)
-//   })
-//   .reduce((total, item) => {
-//     total += parseInt(item)
-//     return total
-//   }, 0)
-
-//   return price
-// }
-
-//  return {
-//   cart: state.shopping.cart
-//  }
-// }
-// const mapAction = (dispatch) => ({
-//   shoppingAction: bindActionCreators(shopping, dispatch)
-// })
-// export default connect(mapState, mapAction)(CartScreen)
 
 export default CartScreen;
