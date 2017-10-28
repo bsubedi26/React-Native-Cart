@@ -10,7 +10,7 @@ class TopHeader extends React.Component {
             <Container>
                 <HeaderCtn>
                     <Ionicons name="md-menu" size={32} color="white" />
-                    <Text>Cart: {this.props.cart.length}</Text>
+                    <CartItems>Cart Items: {this.props.cart.length}</CartItems>
                     <Ionicons name="md-aperture" size={32} color="black" />
                 </HeaderCtn>
             </Container>
@@ -20,7 +20,6 @@ class TopHeader extends React.Component {
 
 const Container = styled.View`
     height: 70;
-    marginBottom: 20;
 `
 
 const HeaderCtn = styled.View`
@@ -38,6 +37,13 @@ const HeaderCtn = styled.View`
     alignItems: center;
 
     paddingHorizontal: 10px;
+`
+
+
+const CartItems = styled.Text`
+    color: black;
+    font-size: 18px;
+    font-style: italic;
 `
 
 const mapState = (state) => ({

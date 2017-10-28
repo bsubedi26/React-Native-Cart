@@ -21,7 +21,9 @@ const rootRoutes = {
     path: 'settings',
   },
 }
-const navConfig = {}
+const navConfig = {
+    tabBarPosition: 'bottom'
+}
 
 export const AppNavigator = TabNavigator(rootRoutes, navConfig);
 

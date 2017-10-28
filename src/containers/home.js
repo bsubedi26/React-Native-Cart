@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import styled from 'styled-components/native'
 import { bindActionCreators } from 'redux';
-import { View, ScrollView, StyleSheet } from 'react-native'
+import { Text, View, ScrollView } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { connect } from 'react-redux'
 import { Card } from 'react-native-elements'
@@ -10,6 +10,7 @@ import TopHeader from '../components/TopHeader'
 import CardContent from '../components/CardContent'
 import Phones from '../components/Phones'
 import * as shopping from '../reducers/shopping'
+import { Font } from 'expo'
 
 class HomeScreen extends React.Component {
     static propTypes = {
@@ -35,18 +36,32 @@ class HomeScreen extends React.Component {
         return (
             <Container>
                 <TopHeader />
-                <View>
+                <Ampersand>Amper</Ampersand>
+                <PhonesContainer>
                     <Phones {...this.props}/>
-                </View>
+                </PhonesContainer>
                 {/* <CardContent title="Home" navigation={this.props.navigation} /> */}
             </Container>
         )
     }
 }
 
+
+const Ampersand = styled.Text`
+    color: #f3f3f3;
+    backgroundColor: cornflowerblue;
+    font-size: 120px;
+    font-family: 'Baskerville';
+    font-style: italic;
+    line-height: 144px;
+`
 const Container = styled.View`
     flex: 1;
 `
+const PhonesContainer = styled.View`
+    marginTop: 20px;
+`
+
 
 const mapState = (state) => ({
     phones: state.shopping.phones

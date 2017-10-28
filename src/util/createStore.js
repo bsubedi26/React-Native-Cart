@@ -8,13 +8,19 @@ import { autoRehydrate } from 'redux-persist'
 import rootReducer from '../reducers/index'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+
 
 // creates the store
 export default () => {
   /* ------------- Redux Configuration ------------- */
 
-  const middleware = [logger, thunk]
-  const enhancers = []
+  const middlewares = [thunk]
+
+  // Options: https://github.com/jhen0409/react-native-debugger#options
+  const enhancers = composeWithDevTools({})(applyMiddleware(...middlewares));
+  // const enhancers = []
 
   /* ------------- Analytics Middleware ------------- */
 //   middleware.push(ScreenTracking)
@@ -27,7 +33,9 @@ export default () => {
 
   /* ------------- Assemble Middleware ------------- */
 
-  enhancers.push(applyMiddleware(...middleware))
+  // enhancers.push(
+  //   applyMiddleware(...middlewares),
+  // )
 
   /* ------------- AutoRehydrate Enhancer ------------- */
 
@@ -38,7 +46,7 @@ export default () => {
 
   // if Reactotron is enabled (default for __DEV__), we'll create the store through Reactotron
 //   const createAppropriateStore = Config.useReactotron ? console.tron.createStore : createStore
-  const store = createStore(rootReducer, compose(...enhancers))
+  const store = createStore(rootReducer, enhancers)
 
   // configure persistStore and check reducer version number
 //   if (ReduxPersist.active) {
