@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components/native'
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { connect } from 'react-redux';
 
 class TopHeader extends React.Component {
     render() {
@@ -10,7 +9,6 @@ class TopHeader extends React.Component {
             <Container>
                 <HeaderCtn>
                     <Ionicons name="md-menu" size={32} color="white" />
-                    <CartItems>Cart Items: {this.props.cart.length}</CartItems>
                     <Ionicons name="md-aperture" size={32} color="black" />
                 </HeaderCtn>
             </Container>
@@ -46,7 +44,5 @@ const CartItems = styled.Text`
     font-style: italic;
 `
 
-const mapState = (state) => ({
-    cart: state.shopping.cart
-})
-export default connect(mapState)(TopHeader);
+
+export default TopHeader;

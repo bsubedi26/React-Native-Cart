@@ -1,22 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import styled from 'styled-components/native'
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { Text, View, ScrollView } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { connect } from 'react-redux'
 import { Card } from 'react-native-elements'
 import TopHeader from '../components/TopHeader'
 import CardContent from '../components/CardContent'
-import Phones from '../components/Phones'
+import Phones from './home/Phones'
 import * as shopping from '../reducers/shopping'
 import { Font } from 'expo'
+import { inject, observer } from 'mobx-react'
 
+@inject('shopping')
+@observer
 class HomeScreen extends React.Component {
     static propTypes = {
         navigation: PropTypes.object.isRequired,
-        phones: PropTypes.array.isRequired,
+        shopping: PropTypes.object.isRequired,
     }
+
     static navigationOptions = {
         tabBarLabel: 'Home',
         tabBarIcon: ({ tintColor, focused }) => (
@@ -36,9 +40,9 @@ class HomeScreen extends React.Component {
         return (
             <Container>
                 <TopHeader />
-                <Ampersand>Amper</Ampersand>
+                <Ampersand>{this.props.shopping.cartLength}</Ampersand>
                 <PhonesContainer>
-                    <Phones {...this.props}/>
+                    <Phones shopping={this.props.shopping}/>
                 </PhonesContainer>
                 {/* <CardContent title="Home" navigation={this.props.navigation} /> */}
             </Container>
@@ -63,11 +67,13 @@ const PhonesContainer = styled.View`
 `
 
 
-const mapState = (state) => ({
-    phones: state.shopping.phones
-})
-const mapAction = (dispatch) => ({
-    shoppingAction: bindActionCreators(shopping, dispatch)
-})
+// const mapState = (state) => ({
+//     phones: state.shopping.phones
+// })
+// const mapAction = (dispatch) => ({
+//     shoppingAction: bindActionCreators(shopping, dispatch)
+// })
 
-export default connect(mapState, mapAction)(HomeScreen)
+// export default connect(mapState, mapAction)(HomeScreen)
+
+export default HomeScreen;

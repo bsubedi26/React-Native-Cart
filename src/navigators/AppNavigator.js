@@ -27,24 +27,22 @@ const navConfig = {
 
 export const AppNavigator = TabNavigator(rootRoutes, navConfig);
 
-
 class AppWithNavigationState extends React.Component {
     static propTypes = {
-        dispatch: PropTypes.func.isRequired,
-        nav: PropTypes.object.isRequired,
+        // dispatch: PropTypes.func.isRequired,
+        // nav: PropTypes.object.isRequired,
     };
+
     render() {
       return (
-        <AppNavigator navigation={addNavigationHelpers({
-          dispatch: this.props.dispatch,
-          state: this.props.nav,
-        })} />
+        <AppNavigator />
       );
     }
   }
   
-const mapStateToProps = state => ({
-  nav: state.nav,
-});
+// const mapStateToProps = state => ({
+//   nav: state.nav,
+// });
 
-export default connect(mapStateToProps)(AppWithNavigationState);
+// export default connect(mapStateToProps)(AppWithNavigationState);
+export default AppWithNavigationState;

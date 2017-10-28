@@ -14,19 +14,20 @@ class Phones extends React.Component {
  
     handleAddCart(phone) {
         phone.quantity = parseInt(this.state.quantity)
-        this.props.shoppingAction.cartAdd(phone)
+        this.props.shopping.cartAdd(phone)
     }
-    handleQuantityChange(quantity) {
+    
+    _quantityChange(quantity) {
         this.setState({ quantity })
     }
-    increment() {
+    _increment() {
         const result = parseInt(this.state.quantity) + 1
         this.setState({
             quantity: result.toString()
         })
     }
 
-    decrement() {
+    _decrement() {
         const result = parseInt(this.state.quantity) - 1
         this.setState({
             quantity: result.toString()
@@ -34,24 +35,24 @@ class Phones extends React.Component {
     }
 
     render() {
-        const { phones } = this.props
+        const { shopping } = this.props
         return (
             <ScrollView >
-                {phones.map((item, i) => {
+                {shopping.phones.map((item, i) => {
                     return (
                         <Container key={item.id}>
                             <Text style={{padding: 3, backgroundColor: '#c9c0d1', width: 100, height: 25, textAlign: 'center'}}>{item.name}</Text>
                             <Image style={{marginTop: 6, marginBottom: 6, width: 150, height: 150}} source={ item.src } />
 
-                            <Entypo size={22} onPress={this.decrement.bind(this)} name="squared-minus"></Entypo>
+                            <Entypo size={22} onPress={this._decrement.bind(this)} name="squared-minus"></Entypo>
                             <TextInput
                                 style={{width: 100, textAlign: 'center', padding: 5}}
                                 keyboardType = 'numeric'
-                                onChangeText={this.handleQuantityChange.bind(this)}
+                                onChangeText={this._quantityChange.bind(this)}
                                 value={this.state.quantity}
                                 disabled={true}
                             />
-                            <Entypo size={22} onPress={this.increment.bind(this)} name="squared-plus"></Entypo>
+                            <Entypo size={22} onPress={this._increment.bind(this)} name="squared-plus"></Entypo>
 
                             <RkButton onPress={this.handleAddCart.bind(this, item)} style={{padding: 20}}>Add Cart</RkButton>
                             <RkButton style={{marginTop: 8}} rkType="danger">Details</RkButton>

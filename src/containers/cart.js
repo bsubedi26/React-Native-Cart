@@ -9,7 +9,10 @@ import { RkButton } from 'react-native-ui-kitten'
 import TopHeader from '../components/TopHeader'
 import CardContent from '../components/CardContent'
 import * as shopping from '../reducers/shopping'
+import { inject, observer } from 'mobx-react'
 
+@inject('shopping')
+@observer
 class CartScreen extends React.Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired
@@ -26,7 +29,7 @@ class CartScreen extends React.Component {
   };
 
   removeFromCart(item) {
-    this.props.shoppingAction.cartRemove(item)
+    this.props.shopping.cartRemove(item)
   }
 
   render() {
@@ -50,7 +53,7 @@ class CartScreen extends React.Component {
             </View>
 
 
-          {this.props.cart.map((item, i) => {
+          {this.props.shopping.cart.map((item, i) => {
             return (
               <View style={{padding: 2}} key={i}>
                 <View style={{ height: 90, flexDirection: 'row', flex: 1, padding: 2, justifyContent: 'space-around' }}>
@@ -83,9 +86,7 @@ class CartScreen extends React.Component {
 };
 
 
-const mapState = (state) => {
- 
-
+// const mapState = (state) => {
 // const totalPrice = state =>  {
 //   const price = state.cart
 //   .map((item, index) => {
@@ -100,12 +101,13 @@ const mapState = (state) => {
 //   return price
 // }
 
- return {
-  cart: state.shopping.cart
- }
-}
-const mapAction = (dispatch) => ({
-  shoppingAction: bindActionCreators(shopping, dispatch)
-})
+//  return {
+//   cart: state.shopping.cart
+//  }
+// }
+// const mapAction = (dispatch) => ({
+//   shoppingAction: bindActionCreators(shopping, dispatch)
+// })
+// export default connect(mapState, mapAction)(CartScreen)
 
-export default connect(mapState, mapAction)(CartScreen)
+export default CartScreen;
