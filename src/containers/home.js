@@ -40,11 +40,10 @@ class HomeScreen extends React.Component {
         return (
             <Container>
                 <TopHeader />
-                <Ampersand>{this.props.shopping.cartLength}</Ampersand>
+                <Ampersand>rnCart</Ampersand>
                 <PhonesContainer>
                     <Phones shopping={this.props.shopping}/>
                 </PhonesContainer>
-                {/* <CardContent title="Home" navigation={this.props.navigation} /> */}
             </Container>
         )
     }
@@ -58,6 +57,7 @@ const Ampersand = styled.Text`
     font-family: 'Baskerville';
     font-style: italic;
     line-height: 144px;
+    text-align: center;
 `
 const Container = styled.View`
     flex: 1;
