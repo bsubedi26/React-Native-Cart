@@ -1,7 +1,8 @@
-import React from 'react';
+import React from 'react'
 import styled from 'styled-components/native'
-import { Alert, View, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Alert, View, Text, StyleSheet } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
+
 class TopHeader extends React.Component {
     handleMenuPress() {
         Alert.alert('Alert!', 'Menu is for show! Leave it alone.')

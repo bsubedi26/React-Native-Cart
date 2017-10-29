@@ -1,6 +1,5 @@
 import React from 'react'
-import styled from 'styled-components/native';
-import autobind from 'autobind-decorator'
+import styled from 'styled-components/native'
 import { Text, TextInput, FlatList, ScrollView, View, Image, Dimensions } from 'react-native'
 import { Button, Card } from 'react-native-elements'
 import { RkButton } from 'react-native-ui-kitten'
@@ -8,7 +7,6 @@ import { Entypo } from '@expo/vector-icons'
 
 const { width, height } = Dimensions.get('window')
 
-@autobind
 class Phones extends React.Component {
     constructor() {
         super()

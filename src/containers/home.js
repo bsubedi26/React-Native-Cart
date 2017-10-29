@@ -1,14 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import styled from 'styled-components/native'
-import { Text, View, ScrollView } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { Card } from 'react-native-elements'
 import TopHeader from '../components/TopHeader'
-import CardContent from '../components/CardContent'
 import Phones from './home/Phones'
-import { Font } from 'expo'
-import { inject, observer } from 'mobx-react'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -17,7 +12,8 @@ import * as cartAction from '../store/cart/action'
 class HomeScreen extends React.Component {
     static propTypes = {
         navigation: PropTypes.object.isRequired,
-        // shopping: PropTypes.object.isRequired,
+        products: PropTypes.array.isRequired,
+        cartAction: PropTypes.object.isRequired
     }
 
     static navigationOptions = {

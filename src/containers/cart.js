@@ -1,11 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import { Image, ScrollView, View, Text, TouchableHighlight } from 'react-native'
 import { Entypo, Ionicons } from '@expo/vector-icons'
 
 import TopHeader from '../components/TopHeader'
-import CardContent from '../components/CardContent'
-import { inject, observer } from 'mobx-react'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
