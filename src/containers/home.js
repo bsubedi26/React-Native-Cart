@@ -10,12 +10,14 @@ import Phones from './home/Phones'
 import { Font } from 'expo'
 import { inject, observer } from 'mobx-react'
 
-@inject('shopping')
-// @observer
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as cartAction from '../store/cart/action'
+
 class HomeScreen extends React.Component {
     static propTypes = {
         navigation: PropTypes.object.isRequired,
-        shopping: PropTypes.object.isRequired,
+        // shopping: PropTypes.object.isRequired,
     }
 
     static navigationOptions = {
@@ -39,7 +41,7 @@ class HomeScreen extends React.Component {
                 <TopHeader />
                 <Ampersand>rnCart</Ampersand>
                 <PhonesContainer>
-                    <Phones shopping={this.props.shopping}/>
+                    {<Phones {...this.props} />}
                 </PhonesContainer>
             </Container>
         )
@@ -63,4 +65,13 @@ const PhonesContainer = styled.View`
     marginTop: 20px;
 `
 
-export default HomeScreen;
+
+
+const mapState = (state) => ({
+    products: state.products
+})
+const mapAction = (dispatch) => ({
+    cartAction: bindActionCreators(cartAction, dispatch)
+})
+
+export default connect(mapState, mapAction)(HomeScreen)

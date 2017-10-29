@@ -1,15 +1,20 @@
 import React from 'react';
 import styled from 'styled-components/native'
-import { View, Text, StyleSheet } from 'react-native';
+import { Alert, View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
 class TopHeader extends React.Component {
+    handleMenuPress() {
+        Alert.alert('Alert!', 'Menu is for show! Leave it alone.')
+    }
+    handleRightIconPress() {
+        Alert.alert('Alert!', 'I know you like this icon. Leave it alone now.')
+    }
     render() {
         return (
             <Container>
                 <HeaderCtn>
-                    <Ionicons name="md-menu" size={32} color="white" />
-                    <Ionicons name="md-aperture" size={32} color="black" />
+                    <Ionicons onPress={this.handleMenuPress} name="md-menu" size={32} color="white" />
+                    <Ionicons onPress={this.handleRightIconPress} name="md-aperture" size={32} color="black" />
                 </HeaderCtn>
             </Container>
         )

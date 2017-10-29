@@ -19,7 +19,7 @@ class Phones extends React.Component {
  
     handleAddCart(phone) {
         const quantity = parseInt(this.state.quantity)
-        this.props.shopping.cartAdd(phone, quantity)
+        this.props.cartAction.add(phone, quantity)
     }
 
     _increment() {
@@ -37,10 +37,10 @@ class Phones extends React.Component {
     }
 
     render() {
-        const { shopping } = this.props
+        const { products } = this.props
         return (
             <ScrollView >
-                {shopping.phones.map((item, i) => {
+                {products.map((item, i) => {
                     return (
                         <Container key={item.id}>
                             <Text style={{padding: 3, backgroundColor: '#c9c0d1', width: 100, height: 25, textAlign: 'center'}}>{item.name}</Text>

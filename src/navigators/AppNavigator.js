@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { TabNavigator, addNavigationHelpers, StackNavigator } from 'react-navigation';
 
 import HomeScreen from '../containers/home';
@@ -28,20 +29,22 @@ export const AppNavigator = TabNavigator(rootRoutes, navConfig);
 
 class AppWithNavigationState extends React.Component {
     static propTypes = {
-        // dispatch: PropTypes.func.isRequired,
-        // nav: PropTypes.object.isRequired,
+        dispatch: PropTypes.func.isRequired,
+        nav: PropTypes.object.isRequired,
     };
 
     render() {
       return (
-        <AppNavigator />
+        <AppNavigator navigation={addNavigationHelpers({
+          dispatch: this.props.dispatch,
+          state: this.props.nav,
+        })} />
       );
     }
   }
   
-// const mapStateToProps = state => ({
-//   nav: state.nav,
-// });
+const mapStateToProps = state => ({
+  nav: state.nav,
+});
 
-// export default connect(mapStateToProps)(AppWithNavigationState);
-export default AppWithNavigationState;
+export default connect(mapStateToProps)(AppWithNavigationState);

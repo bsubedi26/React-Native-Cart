@@ -1,16 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import { Image, ScrollView, View, Text, TouchableHighlight } from 'react-native'
-import autobind from 'autobind-decorator'
-import { Ionicons } from '@expo/vector-icons'
+import { Entypo, Ionicons } from '@expo/vector-icons'
 
 import TopHeader from '../components/TopHeader'
 import CardContent from '../components/CardContent'
 import { inject, observer } from 'mobx-react'
 
-@inject('shopping')
-@observer
-@autobind
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as cartAction from '../store/cart/action'
+import { totalCost, getTotalPerItem, totalItemsInCart } from '../store/cart/selectors'
+
+
 class CartScreen extends React.Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired
@@ -27,10 +29,11 @@ class CartScreen extends React.Component {
   };
 
   removeFromCart(item) {
-    this.props.shopping.cartRemove(item)
+    this.props.cartAction.remove(item)
   }
-  getQuantity() {
-    return 100
+
+  handleCheckout() {
+    alert('Checkout coming soon!')
   }
 
   render() {
@@ -54,19 +57,19 @@ class CartScreen extends React.Component {
             </View>
 
 
-          {this.props.shopping.cartCheckout.map((item, i) => {
+          {this.props.getTotalPerItem.map((item, i) => {
             return (
               <View style={{padding: 8}} key={i}>
                 <View style={{ height: 90, flexDirection: 'row', flex: 1, padding: 2, justifyContent: 'space-around' }}>
                   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <Image style={{width: 75, height: 75}} source={ item.src } />
-                    <Text style={{color: 'black'}}>{item.name}</Text>
+                    <Text style={{color: 'black'}}>{ item.name }</Text>
                   </View>
                   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text>${(item.price * this.props.shopping.quantityBasedOnId(item.id)).toFixed(2)}</Text>
+                    <Text>{ item.price }</Text>
                   </View>
                   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text>{this.props.shopping.quantityBasedOnId(item.id)}</Text>
+                    <Text>{ item.quantity }</Text>
                   </View>
                   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <TouchableHighlight onPress={this.removeFromCart.bind(this, item)}>
@@ -83,13 +86,13 @@ class CartScreen extends React.Component {
               <Text></Text>
             </View>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-              <Text></Text>
+              <Text>${this.props.totalCost}</Text>
             </View>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-              <Text>{this.props.shopping.totalQuantity}</Text>
+              <Text>{this.props.totalItemsInCart}</Text>
             </View>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-              <Text style={{fontSize: 16, color: 'green'}}>Checkout</Text>
+              <Entypo size={28} name='paper-plane' />
             </View>
           </View>
         </ScrollView>
@@ -99,4 +102,20 @@ class CartScreen extends React.Component {
 
 };
 
-export default CartScreen;
+
+
+const mapState = (state) => {
+ return {
+  cart: state.cart,
+  totalCost: totalCost(state),
+  getTotalPerItem: getTotalPerItem(state),
+  totalItemsInCart: totalItemsInCart(state)
+ }
+}
+
+const mapAction = (dispatch) => ({
+  cartAction: bindActionCreators(cartAction, dispatch)
+})
+
+export default connect(mapState, mapAction)(CartScreen)
+

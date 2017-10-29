@@ -1,9 +1,10 @@
 import React from 'react';
-import { Provider, inject, observer } from 'mobx-react';
+import { Provider } from 'react-redux';
 import { Font, AppLoading } from 'expo';
 import AppWithNavigationState from './src/navigators/AppNavigator';
-import store from './src/store';
+import createStore from './src/util/createStore';
 
+const store = createStore();
 
 export default class App extends React.Component {
   state = {
@@ -24,7 +25,7 @@ export default class App extends React.Component {
       return (<AppLoading />)
     }
     return (
-      <Provider {...store}>
+    <Provider store={store}>
         <AppWithNavigationState />
       </Provider>
     );
