@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Font, AppLoading } from 'expo';
-import AppWithNavigationState from './src/navigators/AppNavigator';
-import createStore from './src/util/createStore';
+import AppWithNavigationState from 'navigators/AppNavigator';
+import createStore from 'util/createStore';
 
 const store = createStore();
 

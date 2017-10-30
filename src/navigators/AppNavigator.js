@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { TabNavigator, addNavigationHelpers, StackNavigator } from 'react-navigation';
+import { TabNavigator, addNavigationHelpers } from 'react-navigation';
 
-import HomeScreen from '../containers/home';
-import CartScreen from '../containers/cart';
-import SettingsScreen from '../containers/settings';
+import ProductNavigator from './ProductNavigator';
+import CartScreen from 'containers/cart';
+import SettingsScreen from 'containers/settings';
+
 
 const rootRoutes = {
   Home: {
-    screen: HomeScreen,
+    screen: ProductNavigator,
     path: '',
   },
   Cart: {

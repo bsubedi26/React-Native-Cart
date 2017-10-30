@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 class TopHeader extends React.Component {
     handleMenuPress() {
-        Alert.alert('Alert!', 'Menu is for show! Leave it alone.')
+        alert('Alert!', 'Menu is for show! Leave it alone.')
     }
     handleRightIconPress() {
         Alert.alert('Alert!', 'I know you like this icon. Leave it alone now.')

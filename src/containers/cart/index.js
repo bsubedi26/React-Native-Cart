@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { Image, ScrollView, View, Text, TouchableHighlight } from 'react-native'
 import { Entypo, Ionicons } from '@expo/vector-icons'
 
-import TopHeader from '../components/TopHeader'
+import TopHeader from 'components/TopHeader'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as cartAction from '../store/cart/action'
-import { totalCost, getTotalPerItem, totalItemsInCart } from '../store/cart/selectors'
+import * as cartAction from 'store/cart/action'
+import { totalCost, getTotalPerItem, totalItemsInCart } from 'store/cart/selectors'
 
 
 class CartScreen extends React.Component {
@@ -30,7 +30,7 @@ class CartScreen extends React.Component {
     this.props.cartAction.remove(item)
   }
 
-  handleCheckout() {
+  handleCheckout = () => {
     alert('Checkout coming soon!')
   }
 
@@ -64,7 +64,7 @@ class CartScreen extends React.Component {
                     <Text style={{color: 'black'}}>{ item.name }</Text>
                   </View>
                   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text>{ item.price }</Text>
+                    <Text>${ item.price }</Text>
                   </View>
                   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <Text>{ item.quantity }</Text>
@@ -90,7 +90,7 @@ class CartScreen extends React.Component {
               <Text>{this.props.totalItemsInCart}</Text>
             </View>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-              <Entypo size={28} name='paper-plane' />
+              <Entypo onPress={this.handleCheckout} size={28} name='paper-plane' />
             </View>
           </View>
         </ScrollView>

@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/native'
 import { Ionicons } from '@expo/vector-icons'
-import TopHeader from '../components/TopHeader'
-import Phones from './home/Phones'
+import TopHeader from 'components/TopHeader'
+import Phones from './Phones'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as cartAction from '../store/cart/action'
+import * as cartAction from 'store/cart/action'
 
 class HomeScreen extends React.Component {
     static propTypes = {

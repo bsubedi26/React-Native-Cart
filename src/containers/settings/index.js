@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { ScrollView } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
-import TopHeader from '../components/TopHeader'
-import CardContent from '../components/CardContent'
+import TopHeader from 'components/TopHeader'
+import CardContent from 'components/CardContent'
 
 
 class SettingsScreen extends React.Component {

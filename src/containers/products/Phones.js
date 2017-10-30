@@ -8,30 +8,31 @@ import { Entypo } from '@expo/vector-icons'
 const { width, height } = Dimensions.get('window')
 
 class Phones extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            quantity: "1"
-        }
+    state = {
+        quantity: "1"
     }
- 
+
     handleAddCart(phone) {
         const quantity = parseInt(this.state.quantity)
         this.props.cartAction.add(phone, quantity)
     }
 
-    _increment() {
+    _increment = () => {
         const result = parseInt(this.state.quantity) + 1
         this.setState({
             quantity: result.toString()
         })
     }
 
-    _decrement() {
+    _decrement = () => {
         const result = parseInt(this.state.quantity) - 1
         this.setState({
             quantity: result.toString()
         })
+    }
+    routeToDetail = (product) => {
+        const { navigation } = this.props
+        navigation.navigate('Detail', { product })
     }
 
     render() {
@@ -54,7 +55,7 @@ class Phones extends React.Component {
                             <Entypo size={22} onPress={this._increment} name="squared-plus"></Entypo>
 
                             <RkButton onPress={this.handleAddCart.bind(this, item)} style={{padding: 20}}>Add Cart</RkButton>
-                            <RkButton style={{marginTop: 8}} rkType="danger">Details</RkButton>
+                            <RkButton onPress={this.routeToDetail.bind(this, item)} style={{marginTop: 8}} rkType="danger">Details</RkButton>
                             <Text style={{marginTop: 6, padding: 3, backgroundColor: '#c9c0d1', width: 100, height: 25, textAlign: 'center'}}>${item.price}</Text>
                             <Text style={{ width: width - 50, lineHeight: 30}}>{item.info}</Text>
                         </Container>
