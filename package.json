@@ -24,6 +24,11 @@
   },
   "dependencies": {
     "expo": "^21.0.0",
+    "feathers": "^2.2.3",
+    "feathers-authentication-client": "^0.3.3",
+    "feathers-hooks": "^2.1.2",
+    "feathers-rest": "^1.8.1",
+    "feathers-socketio": "^2.0.1",
     "lodash": "^4.17.4",
     "react": "16.0.0-alpha.12",
     "react-native": "^0.48.4",
@@ -34,6 +39,7 @@
     "redux": "^3.7.2",
     "redux-form": "^7.1.2",
     "redux-thunk": "^2.2.0",
+    "socket.io-client": "^2.0.4",
     "styled-components": "^2.2.2",
     "tcomb-form-native": "^0.6.11"
   }
