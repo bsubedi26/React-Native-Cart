@@ -2,14 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/native'
 import { Ionicons } from '@expo/vector-icons'
-import TopHeader from 'components/TopHeader'
 import Phones from './Phones'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as cartAction from 'store/cart/action'
 
-class HomeScreen extends React.Component {
+class ProductMainScreen extends React.Component {
     static propTypes = {
         navigation: PropTypes.object.isRequired,
         products: PropTypes.array.isRequired,
@@ -34,7 +33,6 @@ class HomeScreen extends React.Component {
     render() {
         return (
             <Container>
-                <TopHeader />
                 <Ampersand>rnCart</Ampersand>
                 <PhonesContainer>
                     {<Phones {...this.props} />}
@@ -70,4 +68,4 @@ const mapAction = (dispatch) => ({
     cartAction: bindActionCreators(cartAction, dispatch)
 })
 
-export default connect(mapState, mapAction)(HomeScreen)
+export default connect(mapState, mapAction)(ProductMainScreen)

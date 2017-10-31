@@ -3,7 +3,7 @@ const initialState = []
 
 
 // ************************** REDUCER ************************** //
-export default function cart(state = [], action = {}) {
+export default function cart(state = [], action) {
     switch (action.type) {
         case 'CART_ADD':
             let addProduct = Object.assign({}, action.product)

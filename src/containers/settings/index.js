@@ -1,11 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ScrollView } from 'react-native'
+import { ActivityIndicator, View, Dimensions } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-import TopHeader from 'components/TopHeader'
 import CardContent from 'components/CardContent'
+import Indicator from 'components/Indicator'
+import LoginForm from './LoginForm'
 
+import { loading } from 'store/indicator/action'
+import delay from 'util/delay' 
+
+const { width, height } = Dimensions.get('window')
 
 class SettingsScreen extends React.Component {
   static propTypes = {
@@ -22,14 +29,52 @@ class SettingsScreen extends React.Component {
       ),
   };
 
+  async blah() {
+      return await Promise.resolve(5)
+  }
+
+  handleSubmit = (form) => {
+    console.log('FORM VALUES: ', form)
+    const { email, password } = form
+    const { navigation, loading } = this.props
+    loading(true)
+
+    delay(7000)
+    .then(() => {
+        loading(false)
+        navigation.navigate('Home')
+    })
+  }
+
+  renderIndicator() {
+    return (
+        <View style={{justifyContent: 'center', height: height - 200, backgroundColor: 'yellow'}}>
+            <ActivityIndicator size={'large'} />
+        </View>
+    )
+  }
+  renderForm() {
+    return <LoginForm handleSubmit={this.handleSubmit} />
+  }
+
   render() {
       return (
-          <ScrollView>
-              <TopHeader />
-              <CardContent title="Settings" navigation={this.props.navigation} />
-          </ScrollView>
+          <View>
+                { this.props.indicator.active ? <Indicator /> : this.renderForm() }
+          </View>
       )
   }
 }
 
-export default SettingsScreen
+const mapState = (state) => {
+    return {
+        form: state.form.login,
+        indicator: state.indicator
+    }
+}
+
+const mapAction = (dispatch) => ({
+    loading: bindActionCreators(loading, dispatch)
+})
+
+export default connect(mapState, mapAction)(SettingsScreen)

@@ -1,14 +1,16 @@
 import React from 'react'
 import styled from 'styled-components/native'
 import { Alert, View, Text, StyleSheet } from 'react-native'
+import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
+import AppStyles from 'constants/AppStyles'
 
 class TopHeader extends React.Component {
     handleMenuPress() {
         alert('Alert!', 'Menu is for show! Leave it alone.')
     }
     handleRightIconPress() {
-        Alert.alert('Alert!', 'I know you like this icon. Leave it alone now.')
+        Alert.alert('Alert!', 'I know you like this icon. Leave it alone.')
     }
     render() {
         return (
@@ -23,12 +25,12 @@ class TopHeader extends React.Component {
 }
 
 const Container = styled.View`
-    height: 70;
+    paddingTop: ${Constants.statusBarHeight};
+    height: ${AppStyles.headerHeight};
 `
 
 const HeaderCtn = styled.View`
     zIndex: 1;
-    height: 50;
     backgroundColor: #A0A0A0;
 
     shadowColor: grey;

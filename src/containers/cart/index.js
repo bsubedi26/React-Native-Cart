@@ -3,13 +3,11 @@ import PropTypes from 'prop-types'
 import { Image, ScrollView, View, Text, TouchableHighlight } from 'react-native'
 import { Entypo, Ionicons } from '@expo/vector-icons'
 
-import TopHeader from 'components/TopHeader'
-
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as cartAction from 'store/cart/action'
 import { totalCost, getTotalPerItem, totalItemsInCart } from 'store/cart/selectors'
-
+import Form from 'components/Form'
 
 class CartScreen extends React.Component {
   static propTypes = {
@@ -37,7 +35,6 @@ class CartScreen extends React.Component {
   render() {
     return (
       <View>
-        <TopHeader />
         <ScrollView>
             <View style={{ height: 60, flexDirection: 'row', flex: 1, padding: 2, justifyContent: 'space-around' }}>
               <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -93,6 +90,7 @@ class CartScreen extends React.Component {
               <Entypo onPress={this.handleCheckout} size={28} name='paper-plane' />
             </View>
           </View>
+
         </ScrollView>
       </View>
     )

@@ -62,13 +62,6 @@ class Phones extends React.Component {
                     )
                 })}
             </ScrollView>
-
-            // <FlatList
-            // contentContainerStyle={{ flex: 1, justifyContent: 'center' }}
-            //     data={phones}
-            //     renderItem={this.renderItemMap}
-            //     keyExtractor={(item) => item.id}
-            // />
         )
     }
 }

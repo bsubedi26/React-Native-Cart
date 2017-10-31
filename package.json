@@ -32,7 +32,9 @@
     "react-navigation": "^1.0.0-beta.15",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
+    "redux-form": "^7.1.2",
     "redux-thunk": "^2.2.0",
-    "styled-components": "^2.2.2"
+    "styled-components": "^2.2.2",
+    "tcomb-form-native": "^0.6.11"
   }
 }
