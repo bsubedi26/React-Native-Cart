@@ -5,7 +5,7 @@ import t from 'tcomb-form-native';
 const { Form } = t.form;
 
 const Person = t.struct({
-  username: t.String,
+  email: t.String,
   password: t.String,
   rememberMe: t.Boolean,
 });
@@ -13,7 +13,7 @@ const Person = t.struct({
 const options = {
   auto: 'placeholders',
   fields: {
-    username: {
+    email: {
       // editable: false
       // hasError: true,
       error: 'Insert a valid email address.'
