@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-native-scripts": "1.5.0",
+    "babel-plugin-module-resolver": "^2.7.1",
     "jest-expo": "^21.0.2",
-    "react-test-renderer": "16.0.0-alpha.12"
+    "react-native-debugger-open": "^0.3.15",
+    "react-native-scripts": "1.5.0",
+    "react-test-renderer": "16.0.0-alpha.12",
+    "redux-devtools-extension": "^2.13.2"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -13,22 +16,25 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch"
+    "test": "node node_modules/jest/bin/jest.js --watch",
+    "debugger": "rndebugger-open"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
     "expo": "^21.0.0",
+    "lodash": "^4.17.4",
     "react": "16.0.0-alpha.12",
     "react-native": "^0.48.4",
     "react-native-elements": "^0.17.0",
+    "react-native-ui-kitten": "^2.0.1",
     "react-navigation": "^1.0.0-beta.15",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-logger": "^3.0.6",
-    "redux-persist": "^5.0.1",
-    "redux-saga": "^0.16.0",
-    "redux-thunk": "^2.2.0"
+    "redux-form": "^7.1.2",
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^2.2.2",
+    "tcomb-form-native": "^0.6.11"
   }
 }

@@ -1,11 +1,10 @@
 import { NavigationActions, addNavigationHelpers } from 'react-navigation';
-import { AppNavigator } from '../navigators/AppNavigator';
-
+import { AppNavigator } from 'navigators/AppNavigator';
 
 const initialState = AppNavigator.router.getStateForAction(NavigationActions.init());
 // const firstAction = AppNavigator.router.getActionForPathAndParams("Home");
 
-export default function navReducer(state = initialState, action) {
+export default function nav(state = initialState, action) {
     let nextState = AppNavigator.router.getStateForAction(action, state)
     // switch (action.type) {
     //     case 'Login':
