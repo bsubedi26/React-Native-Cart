@@ -19,7 +19,6 @@
                 "components": "./components",
                 "store": "./store",
                 "constants": "./constants",
-                "assets": "./assets",
                 "util": "./util"
               }
             }
