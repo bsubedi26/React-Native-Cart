@@ -4,6 +4,14 @@
     "development": {
       "plugins": 
         ["transform-react-jsx-source",
+          // antd-mobile
+          [
+            "import",
+            {
+              "libraryName": "antd-mobile"
+            }
+          ],
+
           ["module-resolver",{
               "root": ["./src"],
               "alias": {

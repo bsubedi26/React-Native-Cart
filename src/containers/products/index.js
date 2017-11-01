@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/native'
 import { Ionicons } from '@expo/vector-icons'
-import Phones from './Phones'
+import PhoneList from './PhoneList'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -35,7 +35,7 @@ class ProductMainScreen extends React.Component {
             <Container>
                 <Ampersand>rnCart</Ampersand>
                 <PhonesContainer>
-                    {<Phones {...this.props} />}
+                    {<PhoneList {...this.props} />}
                 </PhonesContainer>
             </Container>
         )
