@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons'
 import ProductNavigator from './product';
 import CartNavigator from './cart';
 import SettingsNavigator from './settings';
+import CurrencyNavigator from './currency';
 
 const rootRoutes = {
   Home: {
@@ -20,6 +21,10 @@ const rootRoutes = {
   },
   Settings: {
     screen: SettingsNavigator,
+    path: '',
+  },
+  Currency: {
+    screen: CurrencyNavigator,
     path: '',
   },
 }
