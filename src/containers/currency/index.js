@@ -1,70 +1,56 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components/native'
-import { ActivityIndicator, View, Dimensions, ToastAndroid } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import { ScrollView, Text, View } from 'react-native'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Button } from 'antd-mobile'
 
-import CardContent from 'components/CardContent'
 import Indicator from 'components/Indicator'
-
-import { loading } from 'store/indicator/action'
-import delay from 'util/delay' 
-import app from 'util/feathers' 
-
-import axios from 'axios'
-
-const { width, height } = Dimensions.get('window')
+import * as currencyAction from 'store/currency/action'
+import CurrencyList from './CurrencyList'
 
 class CurrencyScreen extends React.Component {
 
-  state = {
-    currencies: []
-  }
+  static navigationOptions = {
+    tabBarLabel: 'Cart',
+    tabBarIcon: ({ tintColor, focused }) => (
+      <MaterialCommunityIcons
+        name={focused ? 'currency-btc' : 'currency-btc'}
+        size={26}
+        style={{ color: tintColor }}
+      />
+    ),
+  };
 
-  async componentDidMount() {
-    await this.getTopTenCoins()
+  fetchCoins = () => {
+    this.props.currencyAction.getTopTenCoins()
   }
-
-  async getTopTenCoins () {
-    const response = await axios.get('https://express-api3.herokuapp.com/api/coin/?limit=10')
-    console.log(response)
-    this.setState({
-      currencies: response.data.currencies
-    })
-  }
-  async getAllCoins () {
-    const response = await axios.get('https://express-api3.herokuapp.com/api/coin/all')
-    console.log(response)
-  }
-
 
   render() {
     return (
-      <View>
+      <ScrollView>
+        <View style={{padding: 20}}>
+          <Button type="primary" onPressIn={this.fetchCoins}>Fetch Top Coins</Button>
+        </View>
 
-        {this.state.currencies.map(currency => {
-          return (
-            <View>
-              <Title>{currency.name}</Title>
-            </View>
-          )
-        })}
-      </View>
+        {this.props.indicator.active ? <Indicator /> : <CurrencyList {...this.props} />}
+    </ScrollView>
 
     )
   }
 
 }
 
+const mapState = (state) => {
+  return {
+    currencies: state.currency.topCurrencies,
+    indicator: state.indicator
+  }
+}
 
-const Container = styled.View `
-
-`
-
-const Title = styled.Text `
-  fontSize: 22px;
-`
-
-export default CurrencyScreen
+const mapAction = (dispatch) => {
+  return {
+    currencyAction: bindActionCreators(currencyAction, dispatch)
+  }
+}
+export default connect(mapState, mapAction)(CurrencyScreen)

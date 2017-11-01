@@ -44,6 +44,7 @@ export default class FormCmp extends React.Component {
           type={Person}
           options={options}
         />
+        
         <TouchableOpacity onPress={this._handleSubmit.bind(this)} style={styles.button} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacity>

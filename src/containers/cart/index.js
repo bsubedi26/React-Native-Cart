@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import * as cartAction from 'store/cart/action'
 import { totalCost, getTotalPerItem, totalItemsInCart } from 'store/cart/selectors'
 import Form from 'components/Form'
+import { Button } from 'nachos-ui'
 
 class CartScreen extends React.Component {
   static propTypes = {
@@ -92,6 +93,8 @@ class CartScreen extends React.Component {
           </View>
 
         </ScrollView>
+        <Button>Nachos</Button>
+        
       </View>
     )
   }

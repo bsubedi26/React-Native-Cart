@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/native'
-import { ActivityIndicator, View, Dimensions, ToastAndroid } from 'react-native'
-import { MapView } from 'expo'
+import { View, Dimensions, ToastAndroid } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -81,17 +80,7 @@ class SettingsScreen extends React.Component {
           <View>
                 { this.state.error ? this.renderError() : null }
                 { this.props.indicator.active ? <Indicator /> : this.renderForm() }
-                <MapView
-                    style={{
-                        height: 400
-                    }}
-                    initialRegion={{
-                    latitude: 37.78825,
-                    longitude: -122.4324,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                    }}
-                />
+                
           </View>
       )
   }

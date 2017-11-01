@@ -5,11 +5,12 @@ import { Ionicons } from '@expo/vector-icons'
 
 import s from '../Styles'
 import CurrencyScreen from 'containers/currency'
+import CurrencyDetailScreen from 'containers/currency/Detail'
 
-const SettingsNavigator = StackNavigator({
+const CurrencyNavigator = StackNavigator({
   Currencies: {
     screen: CurrencyScreen,
-    path: '/list',
+    path: '/currency/list',
     navigationOptions: ({ navigation }) => ({
       title: 'CrytoCurrencies',
       
@@ -19,7 +20,17 @@ const SettingsNavigator = StackNavigator({
       headerStyle: s.headerStyles,
     }),
   },
+  Detail: {
+    screen: CurrencyDetailScreen,
+    path: '/currency/detail',
+    navigationOptions: ({ navigation }) => ({
+      // title: `${navigation.state.params.name}'s Profile!`,
+      title: `Currency Detail`,
+      headerRight: <Button onPress={() => alert('? Button pressed.')} title="?" />,
+      headerStyle: s.headerStyles,
+    }),
+  },
 
 });
 
-export default SettingsNavigator;
+export default CurrencyNavigator;
