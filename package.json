@@ -20,7 +20,9 @@
   },
   "dependencies": {
     "@feathersjs/client": "^3.3.0",
+    "classnames": "^2.2.5",
     "expo": "^25.0.0",
+    "formik": "^0.11.3",
     "react": "16.2.0",
     "react-native": "0.52.0",
     "react-native-elements": "^0.19.0",
@@ -28,7 +30,6 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
-    "redux-form": "^7.2.3",
     "redux-thunk": "^2.2.0",
     "socket.io-client": "^2.0.4",
     "styled-components": "^3.1.5",

@@ -62,6 +62,7 @@ class DetailScreen extends React.Component {
                 <FlexRowCenter>
                     <Entypo size={22} onPress={this._decrement} name="squared-minus"></Entypo>
                     <TextInput
+                        underlineColorAndroid='transparent'
                         style={{ textAlign: 'center', fontSize: 16 }}
                         keyboardType='numeric'
                         value={this.state.quantity}

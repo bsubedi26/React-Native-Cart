@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import t from 'tcomb-form-native';
+import Colors from 'src/constants/Colors';
 
 const { Form } = t.form;
 
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 36,
-    backgroundColor: 'crimson',
+    backgroundColor: Colors.banner,
     // borderColor: '#48BBEC',
     // borderWidth: 1,
     // borderRadius: 8,

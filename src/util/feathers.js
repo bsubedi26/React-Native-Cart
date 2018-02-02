@@ -1,23 +1,22 @@
+import { AsyncStorage } from 'react-native';
 import feathers from '@feathersjs/client/dist/feathers.min';
 import auth from '@feathersjs/client/dist/authentication.min';
-import socketio from '@feathersjs/client/dist/socketio.min';
+// import socketio from '@feathersjs/client/dist/socketio.min';
+// import io from 'socket.io-client'
 
-import io from 'socket.io-client'
-// import feathers from '@feathersjs/client/index'
-// import errors from '@feathersjs/errors'
-// import socketio from '@feathersjs/socketio-client'
-// import auth from '@feathersjs/authentication-client'
-// import fRest from '@feathersjs/rest-client'
-// import axios from 'axios'
+import fRest from '@feathersjs/rest-client'
 
-const HOST = 'http://192.168.1.4:3030'
-const socket = io(HOST)
-// const restClient = fRest(HOST)
+// const socketOptions = { transports: ['websocket'], pingTimeout: 3000, pingInterval: 5000 }
+const HOST = 'http://192.168.0.18:3030'
+// const socket = io(HOST, socketOptions)
+const restClient = fRest(HOST)
 
 const app = feathers()
-  .configure(socketio(socket))
-  // .configure(restClient.axios(axios))
-  .configure(auth());
+  // .configure(socketio(socket))
+  .configure(restClient.fetch(fetch))
+  .configure(auth({
+      storage: AsyncStorage
+    }));
 
 
 // app
@@ -29,4 +28,8 @@ const app = feathers()
 //     // storage: window.localStorage
 //   }))
 
+// app.service('comments')
+// .find()
+//   .then(res => console.log(res))
+//   .catch(res => console.log('.CATCH ERR ', res))
 export default app

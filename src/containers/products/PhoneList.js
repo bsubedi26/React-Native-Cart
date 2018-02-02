@@ -50,6 +50,7 @@ class Phones extends React.Component {
                             <FlexRowCenter>
                                 <Entypo size={22} onPress={this._decrement} name="squared-minus"></Entypo>
                                 <TextInput
+                                    underlineColorAndroid='transparent'
                                     style={{ textAlign: 'center', fontSize: 16 }}
                                     keyboardType='numeric'
                                     value={this.state.quantity}
@@ -61,8 +62,8 @@ class Phones extends React.Component {
                             <WhiteSpace />
                             
                             <FlexRowCenter>
-                                <Button small backgroundColor={Colors.facebook} title="Add Cart" onPress={this.handleAddCart.bind(this, item)} />
-                                <Button backgroundColor={Colors.banner} title="Details" onPress={this.routeToDetail.bind(this, item)} />
+                                <Button rounded={true} backgroundColor={Colors.facebook} title="Add Cart" onPress={this.handleAddCart.bind(this, item)} />
+                                <Button rounded={true} backgroundColor={Colors.banner} title="Details" onPress={this.routeToDetail.bind(this, item)} />
                             </FlexRowCenter>
 
                             <WhiteSpace />
