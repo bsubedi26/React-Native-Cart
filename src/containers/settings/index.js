@@ -35,35 +35,28 @@ class SettingsScreen extends React.Component {
     };
 
     handleSubmit = (formValues, setSubmitting) => {
-
         console.log('FORM VALUES: ', formValues)
         const { email, password } = formValues
-        const { navigation, loading } = this.props
+        const { navigation, dispatch } = this.props
         const userService = app.service('users')
 
-        loading(true)
+        dispatch(loading(true))
         return userService.create({ email, password })
-            .then(res => {
-                console.log('.then ', res)
-                loading(false)
+            .then(user => {
+                // console.log('.then ', user)
+                dispatch(loading(false))
                 // setSubmitting(false)
                 // ToastAndroid.show(`Successfully created: ${res.email}!`, ToastAndroid.SHORT);
-                navigation.navigate('Home')
+                // dispatch({ type: 'USER_SET', payload: user })
+                navigation.navigate('Products')
             })
             .catch(error => {
-                loading(false)
+                dispatch(loading(false))
                 // setSubmitting(false)
                 this.setState({ error: error })
                 // ToastAndroid.show('There was an error. Try again!', ToastAndroid.SHORT);
                 console.log('.catch ', error)
             })
-
-        // loading(true)
-        // delay(7000)
-        // .then(() => {
-        //     loading(false)
-        //     navigation.navigate('Home')
-        // })
     }
 
     renderForm() {
@@ -88,7 +81,6 @@ class SettingsScreen extends React.Component {
     }
 }
 
-// class="w-90 ba br2 pa3 ma2 red bg-washed-red" role="alert"
 const ErrorContainer = styled.View`
     backgroundColor: red;
     height: 70px;
@@ -106,8 +98,4 @@ const mapState = (state) => {
     }
 }
 
-const mapAction = (dispatch) => ({
-    loading: bindActionCreators(loading, dispatch)
-})
-
-export default connect(mapState, mapAction)(SettingsScreen)
+export default connect(mapState)(SettingsScreen)

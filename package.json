@@ -1,6 +1,6 @@
 {
-  "name": "revised-back",
-  "version": "0.1.0",
+  "name": "react-native-mobile",
+  "version": "0.2.0",
   "private": true,
   "devDependencies": {
     "jest-expo": "25.0.0",

@@ -1,14 +1,14 @@
-import React from 'react';
-import { StyleSheet, Text, TextInput, Image, ScrollView, Dimensions } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, TextInput, Image, ScrollView, Dimensions } from 'react-native'
 import styled from 'styled-components/native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Button } from 'react-native-elements';
+import { Button } from 'react-native-elements'
 import { Ionicons, Entypo } from '@expo/vector-icons'
 
 import * as cartAction from 'src/store/cart/action'
 import Colors from 'src/constants/Colors'
-import { Name, FlexRowCenter, WhiteSpace, Container } from './common'
+import { Name, FlexRowCenter, WhiteSpace, Container, Price } from './common'
 
 
 const { width, height } = Dimensions.get('window')
@@ -18,7 +18,7 @@ class DetailScreen extends React.Component {
     }
 
     static navigationOptions = {
-        tabBarLabel: 'Home',
+        tabBarLabel: 'Products',
         tabBarIcon: ({ tintColor, focused }) => (
             <Ionicons
                 name={focused ? 'ios-home' : 'ios-home-outline'}
@@ -78,26 +78,9 @@ class DetailScreen extends React.Component {
                 </FlexRowCenter>
 
                 <WhiteSpace />
-                <Text style={{ marginTop: 6, padding: 3, backgroundColor: Colors.violetLight, width: 100, height: 25, textAlign: 'center' }}>${product.price}</Text>
+                <Price>${product.price}</Price>
                 <WhiteSpace />
                 <Text style={{ width: width - 50, lineHeight: 30 }}>{product.info}</Text>
-
-                {/* <Text style={{padding: 3, backgroundColor: '#c9c0d1', width: 100, height: 25, textAlign: 'center'}}>{product.name}</Text>
-                <Image style={{marginTop: 6, marginBottom: 6, width: 150, height: 150}} source={ product.src } />
-
-                <Entypo size={22} onPress={this._decrement} name="squared-minus"></Entypo>
-                <TextInput
-                    style={{width: 100, textAlign: 'center', padding: 5}}
-                    keyboardType = 'numeric'
-                    value={this.state.quantity}
-                    editable={false}
-                />
-                <Entypo size={22} onPress={this._increment} name="squared-plus"></Entypo>
-
-                <Button onPress={this.handleAddCart.bind(this, product)} style={{padding: 20}}>Add Cart</Button>
-                <Text style={{marginTop: 6, padding: 3, backgroundColor: '#c9c0d1', width: 100, height: 25, textAlign: 'center'}}>${product.price}</Text>
-                <Text style={{ width: width - 50, lineHeight: 30}}>{product.info}</Text> */}
-
 
             </ScrollView>
         )

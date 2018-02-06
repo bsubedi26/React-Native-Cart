@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 import { TabNavigator, addNavigationHelpers } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons'
 
+import Colors from 'src/constants/Colors';
 import ProductNavigator from './product';
 import CartNavigator from './cart';
 import SettingsNavigator from './settings';
 import CurrencyNavigator from './currency';
 
 const rootRoutes = {
-  Home: {
+  Products: {
     screen: ProductNavigator,
     path: '',
   },
@@ -30,7 +31,18 @@ const rootRoutes = {
 }
 const navConfig = {
     tabBarPosition: 'bottom',
-    initialRouteName: 'Home'
+    initialRouteName: 'Products',
+    tabBarOptions: {
+      indicatorStyle: {
+        backgroundColor: 'white',
+      },
+      labelStyle: {
+        fontSize: 14,
+      },
+      style: {
+        backgroundColor: Colors.facebook,
+      },
+    }
 }
 
 export const AppNavigator = TabNavigator(rootRoutes, navConfig);

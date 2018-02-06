@@ -16,7 +16,7 @@ class ProductMainScreen extends React.Component {
     }
 
     static navigationOptions = {
-        tabBarLabel: 'Home',
+        tabBarLabel: 'Products',
         tabBarIcon: ({ tintColor, focused }) => (
             <Ionicons
                 name={focused ? 'ios-home' : 'ios-home-outline'}
@@ -27,6 +27,8 @@ class ProductMainScreen extends React.Component {
     };
 
     componentDidMount() {
+        // const { state } = this.props.navigation
+        // const { params } = this.props.navigation.state
         // this.props.navigation.navigate('DrawerOpen');
     }
 
@@ -59,10 +61,8 @@ const PhonesContainer = styled.View`
     marginTop: 20px;
 `
 
-
-
 const mapState = (state) => ({
-    products: state.products
+    products: state.products,
 })
 const mapAction = (dispatch) => ({
     cartAction: bindActionCreators(cartAction, dispatch)

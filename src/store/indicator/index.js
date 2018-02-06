@@ -1,6 +1,6 @@
 // ************************** STATE ************************** //
 const initialState = {
-  active: false
+  active: false,
 }
 
 

@@ -1,34 +1,23 @@
-import React from 'react'
-import { Button } from 'react-native'
-import { StackNavigator } from 'react-navigation'
-import { Ionicons } from '@expo/vector-icons'
+import React from 'react';
+import { Button } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
-import s from '../Styles'
-import CurrencyScreen from 'src/containers/currency'
-import CurrencyDetailScreen from 'src/containers/currency/Detail'
+import s from '../styles';
+import getFixedTopNavigation from '../getFixedTopNavigation';
+import CurrencyScreen from 'src/containers/currency';
+import CurrencyDetailScreen from 'src/containers/currency/Detail';
 
 const CurrencyNavigator = StackNavigator({
   Currencies: {
     screen: CurrencyScreen,
-    path: '/currency/list',
-    navigationOptions: ({ navigation }) => ({
-      title: 'CrytoCurrencies',
-      
-      // headerLeft: <Ionicons style={s.leftIcon} onPress={() => navigation.navigate('DrawerOpen')} name="md-menu" size={32} color="black" />,
-      headerLeft: <Ionicons style={s.leftIcon} onPress={() => alert('DrawerOpen')} name="md-menu" size={32} color="black" />,
-      headerRight: <Button onPress={() => alert('? Button pressed.')} title="?" />,
-      headerStyle: s.headerStyles,
-    }),
+    path: '/currencies',
+    navigationOptions: ({ navigation }) => getFixedTopNavigation('CryptoCurrencies', { navigation }),
+
   },
   Detail: {
     screen: CurrencyDetailScreen,
-    path: '/currency/detail',
-    navigationOptions: ({ navigation }) => ({
-      // title: `${navigation.state.params.name}'s Profile!`,
-      title: `Currency Detail`,
-      headerRight: <Button onPress={() => alert('? Button pressed.')} title="?" />,
-      headerStyle: s.headerStyles,
-    }),
+    path: '/currencies/detail',
+    navigationOptions: ({ navigation }) => getFixedTopNavigation('Currency Detail', { childRoute: true, navigation }),
   },
 
 });

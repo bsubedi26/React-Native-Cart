@@ -3,7 +3,7 @@ import { Text, TextInput, FlatList, ScrollView, View, Image, Dimensions } from '
 import { Button, Card } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons'
 import Colors from 'src/constants/Colors'
-import { Name, FlexRowCenter, WhiteSpace, Container } from './common'
+import { Name, FlexRowCenter, WhiteSpace, Container, Price } from './common'
 
 const { width, height } = Dimensions.get('window')
 
@@ -44,7 +44,7 @@ class Phones extends React.Component {
                         <Container key={item.id}>
                             <Name>{item.name}</Name>
                             <WhiteSpace />
-                            <Image style={{marginTop: 6, marginBottom: 6, width: 150, height: 150}} source={ item.src } />
+                            <Image style={{ marginTop: 6, marginBottom: 6, width: 150, height: 150 }} source={item.src} />
                             <WhiteSpace />
 
                             <FlexRowCenter>
@@ -58,18 +58,18 @@ class Phones extends React.Component {
                                 />
                                 <Entypo size={22} onPress={this._increment} name="squared-plus"></Entypo>
                             </FlexRowCenter>
-                            
+
                             <WhiteSpace />
-                            
+
                             <FlexRowCenter>
                                 <Button rounded={true} backgroundColor={Colors.facebook} title="Add Cart" onPress={this.handleAddCart.bind(this, item)} />
                                 <Button rounded={true} backgroundColor={Colors.banner} title="Details" onPress={this.routeToDetail.bind(this, item)} />
                             </FlexRowCenter>
 
                             <WhiteSpace />
-                            <Text style={{ marginTop: 6, padding: 3, backgroundColor: Colors.violetLight, width: 100, height: 25, textAlign: 'center' }}>${item.price}</Text>
+                            <Price>${item.price}</Price>
                             <WhiteSpace />
-                            <Text style={{ width: width - 50, lineHeight: 30}}>{item.info}</Text>
+                            <Text style={{ width: width - 50, lineHeight: 30 }}>{item.info}</Text>
                         </Container>
                     )
                 })}
