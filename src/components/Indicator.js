@@ -1,7 +1,7 @@
 import React from 'react'
-import { StyleSheet, Text, ScrollView, View, ActivityIndicator } from 'react-native'
+import { ActivityIndicator } from 'react-native'
 import styled from 'styled-components/native'
-import AppStyles from 'src/constants/AppStyles'
+import Metrics from 'src/themes/Metrics'
 
 export default class Indicator extends React.Component {
   render() {
@@ -13,12 +13,10 @@ export default class Indicator extends React.Component {
   }
 }
 
-const { totalHeight, headerHeight, tabbarHeight, centerHeight } = AppStyles
-
 // center indicator vertically by subtracting top header & bottom tabbar height 
 // const finalHeight = totalHeight - (headerHeight + tabbarHeight)
 
 const Container = styled.View`
     justifyContent: center;
-    height: ${centerHeight};
+    height: ${() => Metrics.halfHeight};
 `

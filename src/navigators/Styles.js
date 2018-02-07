@@ -1,12 +1,18 @@
 import { StyleSheet, Platform } from 'react-native'
 import { Constants } from 'expo'
-import AppStyles from 'src/constants/AppStyles'
+import Metrics from 'src/themes/Metrics'
+
 
 const styles = StyleSheet.create({
   headerStyles: {
-    paddingTop: Constants.statusBarHeight,
-    height: (Platform.OS === 'android') ? AppStyles.headerHeight + 20 : AppStyles.headerHeight,
-    // backgroundColor: 'deepskyblue'
+    height: Metrics.navBarHeight,
+    // paddingTop: Constants.statusBarHeight,
+    // backgroundColor: 'deepskyblue',
+    // justifyContent: 'center',
+    // borderRadius: 3,
+    // borderColor: 'aqua',
+    // borderWidth: 6,
+    // paddingBottom: 10
   },
   leftIcon: {
     paddingHorizontal: 10

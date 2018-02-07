@@ -2,11 +2,15 @@ import React from 'react'
 import { Button } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
-import Colors from 'src/constants/Colors'
+import Colors from 'src/themes/Colors'
 import s from '../styles'
-import getFixedTopNavigation from '../getFixedTopNavigation'
+import getFixedTopNavigation from '../_helpers/getFixedTopNavigation'
 import ProductMainScreen from 'src/containers/products'
 import ProductDetailScreen from 'src/containers/products/Detail'
+
+const options = {
+  // headerMode: 'none'
+}
 
 const ProductScreen = StackNavigator({
   Products: {
@@ -19,6 +23,6 @@ const ProductScreen = StackNavigator({
     path: '/products/detail',
     navigationOptions: ({ navigation }) => getFixedTopNavigation('Product Detail', { childRoute: true, navigation }),
   },
-});
+}, options);
 
 export default ProductScreen;

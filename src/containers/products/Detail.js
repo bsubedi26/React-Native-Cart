@@ -7,7 +7,7 @@ import { Button } from 'react-native-elements'
 import { Ionicons, Entypo } from '@expo/vector-icons'
 
 import * as cartAction from 'src/store/cart/action'
-import Colors from 'src/constants/Colors'
+import Colors from 'src/themes/Colors'
 import { Name, FlexRowCenter, WhiteSpace, Container, Price } from './common'
 
 
@@ -16,17 +16,6 @@ class DetailScreen extends React.Component {
     state = {
         quantity: "1"
     }
-
-    static navigationOptions = {
-        tabBarLabel: 'Products',
-        tabBarIcon: ({ tintColor, focused }) => (
-            <Ionicons
-                name={focused ? 'ios-home' : 'ios-home-outline'}
-                size={26}
-                style={{ color: tintColor }}
-            />
-        ),
-    };
 
     handleAddCart = (phone) => {
         const quantity = parseInt(this.state.quantity)

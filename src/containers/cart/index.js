@@ -14,17 +14,7 @@ class CartScreen extends React.Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired
   }
-  static navigationOptions = {
-    tabBarLabel: 'Cart',
-    tabBarIcon: ({ tintColor, focused }) => (
-      <Ionicons
-        name={focused ? 'ios-cart' : 'ios-cart-outline'}
-        size={26}
-        style={{ color: tintColor }}
-      />
-    ),
-  };
-
+  
   removeFromCart(item) {
     this.props.cartAction.remove(item)
   }

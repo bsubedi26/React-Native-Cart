@@ -15,17 +15,6 @@ class ProductMainScreen extends React.Component {
         cartAction: PropTypes.object.isRequired
     }
 
-    static navigationOptions = {
-        tabBarLabel: 'Products',
-        tabBarIcon: ({ tintColor, focused }) => (
-            <Ionicons
-                name={focused ? 'ios-home' : 'ios-home-outline'}
-                size={26}
-                style={{ color: tintColor }}
-            />
-        ),
-    };
-
     componentDidMount() {
         // const { state } = this.props.navigation
         // const { params } = this.props.navigation.state

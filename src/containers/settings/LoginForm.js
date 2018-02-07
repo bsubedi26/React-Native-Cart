@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import t from 'tcomb-form-native';
-import Colors from 'src/constants/Colors';
+import Colors from 'src/themes/Colors';
 
 const { Form } = t.form;
 

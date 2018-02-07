@@ -2,36 +2,63 @@ import React from 'react';
 import { Button } from 'react-native'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { TabNavigator, addNavigationHelpers } from 'react-navigation';
+import { DrawerNavigator, StackNavigator, TabNavigator, addNavigationHelpers } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons'
 
-import Colors from 'src/constants/Colors';
+import Colors from 'src/themes/Colors';
 import ProductNavigator from './product';
 import CartNavigator from './cart';
-import SettingsNavigator from './settings';
+import LoginNavigator from './login';
 import CurrencyNavigator from './currency';
 
-const rootRoutes = {
+const tabRoutes = {
   Products: {
     screen: ProductNavigator,
     path: '',
+    navigationOptions: {
+      tabBarLabel: 'Products',
+      tabBarIcon: ({ tintColor, focused }) => (
+        <Ionicons
+          name={focused ? 'ios-home' : 'ios-home-outline'}
+          size={26}
+          style={{ color: tintColor }}
+        />
+      ),
+    }
   },
   Cart: {
     screen: CartNavigator,
     path: '',
+    navigationOptions: {
+      tabBarLabel: 'Cart',
+      tabBarIcon: ({ tintColor, focused }) => (
+        <Ionicons
+          name={focused ? 'ios-cart' : 'ios-cart-outline'}
+          size={26}
+          style={{ color: tintColor }}
+        />
+      ),
+    }
   },
-  Settings: {
-    screen: SettingsNavigator,
-    path: '',
-  },
-  // Currency: {
-  //   screen: CurrencyNavigator,
+  // Login: {
+  //   screen: Login,
   //   path: '',
+  //   navigationOptions: {
+  //     tabBarLabel: 'Login',
+  //     tabBarIcon: ({ tintColor, focused }) => (
+  //       <Ionicons
+  //         name={focused ? 'ios-settings' : 'ios-settings-outline'}
+  //         size={26}
+  //         style={{ color: tintColor }}
+  //       />
+  //     ),
+  //   }
   // },
 }
-const navConfig = {
+
+const tabConfig = {
     tabBarPosition: 'bottom',
-    initialRouteName: 'Products',
+    initialRouteName: 'Cart',
     tabBarOptions: {
       indicatorStyle: {
         backgroundColor: 'white',
@@ -45,7 +72,17 @@ const navConfig = {
     }
 }
 
-export const AppNavigator = TabNavigator(rootRoutes, navConfig);
+const TabStack = TabNavigator(tabRoutes, tabConfig);
+
+export const AppNavigator = DrawerNavigator({
+  Products: {
+    screen: TabStack
+  },
+  Login: {
+    screen: LoginNavigator
+  },
+});
+// export const AppNavigator = TabNavigator(tabRoutes, navConfig);
 
 class AppWithNavigationState extends React.Component {
     static propTypes = {

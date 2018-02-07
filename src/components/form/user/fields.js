@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import classNames from 'classnames';
-import Colors from 'src/constants/Colors';
+import Colors from 'src/themes/Colors';
 import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
 
 const style = StyleSheet.create({

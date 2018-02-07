@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, TextInput, FlatList, ScrollView, View, Image, Dimensions } from 'react-native'
 import { Button, Card } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons'
-import Colors from 'src/constants/Colors'
+import Colors from 'src/themes/Colors'
 import { Name, FlexRowCenter, WhiteSpace, Container, Price } from './common'
 
 const { width, height } = Dimensions.get('window')

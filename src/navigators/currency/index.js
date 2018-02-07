@@ -3,7 +3,7 @@ import { Button } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 import s from '../styles';
-import getFixedTopNavigation from '../getFixedTopNavigation';
+import getFixedTopNavigation from '../_helpers/getFixedTopNavigation';
 import CurrencyScreen from 'src/containers/currency';
 import CurrencyDetailScreen from 'src/containers/currency/Detail';
 

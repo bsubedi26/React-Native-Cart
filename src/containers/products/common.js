@@ -1,5 +1,5 @@
 import styled from 'styled-components/native'
-import Colors from 'src/constants/Colors'
+import Colors from 'src/themes/Colors'
 
 export const Name = styled.Text`
     padding: 3px;

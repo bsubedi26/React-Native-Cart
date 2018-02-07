@@ -23,17 +23,7 @@ class SettingsScreen extends React.Component {
     static propTypes = {
         navigation: PropTypes.object.isRequired
     }
-    static navigationOptions = {
-        tabBarLabel: 'Settings',
-        tabBarIcon: ({ tintColor, focused }) => (
-            <Ionicons
-                name={focused ? 'ios-settings' : 'ios-settings-outline'}
-                size={26}
-                style={{ color: tintColor }}
-            />
-        ),
-    };
-
+    
     handleSubmit = (formValues, setSubmitting) => {
         console.log('FORM VALUES: ', formValues)
         const { email, password } = formValues
@@ -75,7 +65,6 @@ class SettingsScreen extends React.Component {
             <View>
                 {this.state.error ? this.renderError() : null}
                 {this.props.indicator.active ? <Indicator /> : this.renderForm()}
-
             </View>
         )
     }

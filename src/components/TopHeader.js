@@ -3,7 +3,7 @@ import styled from 'styled-components/native'
 import { Alert, View, Text, StyleSheet } from 'react-native'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
-import AppStyles from 'src/constants/AppStyles'
+import AppStyles from 'src/themes/AppStyles'
 
 class TopHeader extends React.Component {
     handleMenuPress() {
