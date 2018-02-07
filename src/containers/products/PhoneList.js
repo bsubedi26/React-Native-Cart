@@ -8,28 +8,29 @@ import { Name, FlexRowCenter, WhiteSpace, Container, Price } from './common'
 const { width, height } = Dimensions.get('window')
 
 class Phones extends React.Component {
+
     state = {
         quantity: "1"
     }
 
-    handleAddCart(phone) {
+    handleAddCart(product) {
         const quantity = parseInt(this.state.quantity)
-        this.props.cartAction.add(phone, quantity)
+        this.props.cartAction.add(product, quantity)
     }
 
-    _increment = () => {
-        const result = parseInt(this.state.quantity) + 1
+    increment = (product) => {
         this.setState({
-            quantity: result.toString()
+            quantity: (parseInt(this.state.quantity) + 1).toString()
         })
     }
 
-    _decrement = () => {
-        const result = parseInt(this.state.quantity) - 1
+    decrement (product) {
+        if (this.state.quantity == 1) return
         this.setState({
-            quantity: result.toString()
+            quantity: (parseInt(this.state.quantity) - 1).toString()
         })
     }
+
     routeToDetail = (product) => {
         const { navigation } = this.props
         navigation.navigate('Detail', { product })
@@ -48,7 +49,7 @@ class Phones extends React.Component {
                             <WhiteSpace />
 
                             <FlexRowCenter>
-                                <Entypo size={22} onPress={this._decrement} name="squared-minus"></Entypo>
+                                <Entypo size={22} onPress={this.decrement.bind(this, item)} name="squared-minus"></Entypo>
                                 <TextInput
                                     underlineColorAndroid='transparent'
                                     style={{ textAlign: 'center', fontSize: 16 }}
@@ -56,7 +57,7 @@ class Phones extends React.Component {
                                     value={this.state.quantity}
                                     editable={false}
                                 />
-                                <Entypo size={22} onPress={this._increment} name="squared-plus"></Entypo>
+                                <Entypo size={22} onPress={this.increment.bind(this, item)} name="squared-plus"></Entypo>
                             </FlexRowCenter>
 
                             <WhiteSpace />
@@ -68,7 +69,6 @@ class Phones extends React.Component {
                                 <TouchableHighlight style={{ margin: 10, padding: 15, backgroundColor: Colors.banner }} onPress={this.routeToDetail.bind(this, item)}>
                                     <Text style={{ fontSize: 16, color: 'white' }} >Details</Text>
                                 </TouchableHighlight>
-                                {/* <Button rounded={true} backgroundColor={Colors.banner} title="Details" onPress={this.routeToDetail.bind(this, item)} /> */}
                             </FlexRowCenter>
 
                             <WhiteSpace />
