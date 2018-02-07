@@ -1,9 +1,8 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, Image, ScrollView, Dimensions } from 'react-native'
+import { TouchableHighlight, StyleSheet, Text, TextInput, Image, ScrollView, Dimensions } from 'react-native'
 import styled from 'styled-components/native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Button } from 'react-native-elements'
 import { Ionicons, Entypo } from '@expo/vector-icons'
 
 import * as cartAction from 'src/store/cart/action'
@@ -63,7 +62,9 @@ class DetailScreen extends React.Component {
                 <WhiteSpace />
 
                 <FlexRowCenter>
-                    <Button small backgroundColor={Colors.facebook} title="Add Cart" onPress={this.handleAddCart.bind(this, product)} />
+                    <TouchableHighlight style={{ margin: 10, padding: 15, backgroundColor: Colors.facebook }} onPress={this.handleAddCart.bind(this, product)}>
+                        <Text style={{ fontSize: 16, color: 'white' }} >Add Cart</Text>
+                    </TouchableHighlight>
                 </FlexRowCenter>
 
                 <WhiteSpace />

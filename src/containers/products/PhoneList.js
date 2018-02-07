@@ -1,6 +1,6 @@
 import React from 'react'
-import { Text, TextInput, FlatList, ScrollView, View, Image, Dimensions } from 'react-native'
-import { Button, Card } from 'react-native-elements'
+import { TouchableHighlight, Text, TextInput, FlatList, ScrollView, View, Image, Dimensions } from 'react-native'
+import { Card } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons'
 import Colors from 'src/themes/Colors'
 import { Name, FlexRowCenter, WhiteSpace, Container, Price } from './common'
@@ -62,8 +62,13 @@ class Phones extends React.Component {
                             <WhiteSpace />
 
                             <FlexRowCenter>
-                                <Button rounded={true} backgroundColor={Colors.facebook} title="Add Cart" onPress={this.handleAddCart.bind(this, item)} />
-                                <Button rounded={true} backgroundColor={Colors.banner} title="Details" onPress={this.routeToDetail.bind(this, item)} />
+                                <TouchableHighlight style={{margin: 10, padding: 15, backgroundColor: Colors.facebook}} onPress={this.handleAddCart.bind(this, item)}>
+                                    <Text style={{ fontSize: 16, color: 'white' }} >Add Cart</Text>
+                                </TouchableHighlight>
+                                <TouchableHighlight style={{ margin: 10, padding: 15, backgroundColor: Colors.banner }} onPress={this.routeToDetail.bind(this, item)}>
+                                    <Text style={{ fontSize: 16, color: 'white' }} >Details</Text>
+                                </TouchableHighlight>
+                                {/* <Button rounded={true} backgroundColor={Colors.banner} title="Details" onPress={this.routeToDetail.bind(this, item)} /> */}
                             </FlexRowCenter>
 
                             <WhiteSpace />

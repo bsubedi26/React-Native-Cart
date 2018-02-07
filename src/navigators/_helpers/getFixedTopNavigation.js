@@ -5,13 +5,12 @@ import { Button } from 'react-native'
 import s from '../styles'
 import { HeaderBackButton } from 'react-navigation'
 
-const pressed = (navigation) => {
-  console.log(navigation)
+const menuPressed = (navigation) => {
   return navigation.navigate('DrawerOpen')
 }
 
 const renderBackButton = (navigation) => <HeaderBackButton onPress={() => navigation.goBack()} />
-const renderMenuIcon = (navigation) => <Ionicons style={s.leftIcon} onPress={pressed.bind(this, navigation)} name="md-menu" size={32} color="black" />
+const renderMenuIcon = (navigation) => <Ionicons style={s.leftIcon} onPress={menuPressed.bind(this, navigation)} name="md-menu" size={32} color="black" />
 
 export default (navigationTitle, options = {}) => {
   const { childRoute, navigation } = options

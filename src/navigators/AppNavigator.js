@@ -58,7 +58,7 @@ const tabRoutes = {
 
 const tabConfig = {
     tabBarPosition: 'bottom',
-    initialRouteName: 'Cart',
+    initialRouteName: 'Products',
     tabBarOptions: {
       indicatorStyle: {
         backgroundColor: 'white',

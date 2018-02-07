@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Image, ScrollView, View, Text, TouchableHighlight } from 'react-native'
+import { Image, ScrollView, View, Text, TextInput, TouchableHighlight } from 'react-native'
 import { Entypo, Ionicons } from '@expo/vector-icons'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import * as cartAction from 'src/store/cart/action'
+import { remove, increaseQuantity, decreaseQuantity } from 'src/store/cart/action'
 import { totalCost, getTotalPerItem, totalItemsInCart } from 'src/store/cart/selectors'
 import Form from 'src/components/Form'
 
@@ -14,13 +14,24 @@ class CartScreen extends React.Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired
   }
-  
-  removeFromCart(item) {
-    this.props.cartAction.remove(item)
-  }
 
   handleCheckout = () => {
     alert('Checkout coming soon!')
+  }
+
+  removeFromCart(item) {
+    const { dispatch } = this.props
+    dispatch(remove(item))
+  }
+
+  increment(item) {
+    const { dispatch } = this.props
+    dispatch(increaseQuantity(item))
+  }
+
+  decrement(item) {
+    const { dispatch } = this.props
+    dispatch(decreaseQuantity(item))
   }
 
   render() {
@@ -52,10 +63,18 @@ class CartScreen extends React.Component {
                     <Text style={{color: 'black'}}>{ item.name }</Text>
                   </View>
                   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text>${ item.price }</Text>
+                    <Text>${ item.totalPrice }</Text>
                   </View>
-                  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text>{ item.quantity }</Text>
+                  <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                    <Entypo size={22} onPress={this.decrement.bind(this, item)} name="squared-minus"></Entypo>
+                    <TextInput
+                      underlineColorAndroid='transparent'
+                      style={{ textAlign: 'center', fontSize: 16 }}
+                      keyboardType='numeric'
+                      value={item.quantity.toString()}
+                      editable={false}
+                    />
+                    <Entypo size={22} onPress={this.increment.bind(this, item)} name="squared-plus"></Entypo>
                   </View>
                   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <TouchableHighlight onPress={this.removeFromCart.bind(this, item)}>
@@ -100,9 +119,5 @@ const mapState = (state) => {
  }
 }
 
-const mapAction = (dispatch) => ({
-  cartAction: bindActionCreators(cartAction, dispatch)
-})
-
-export default connect(mapState, mapAction)(CartScreen)
+export default connect(mapState)(CartScreen)
 
