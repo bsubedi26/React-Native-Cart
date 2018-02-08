@@ -86,7 +86,7 @@ class CartScreen extends React.Component {
             )
           })}
 
-          <View style={{ paddingBottom: 80, height: 60, flexDirection: 'row', flex: 1, padding: 2, justifyContent: 'space-around' }}>
+          <View style={{ paddingTop: 20, paddingBottom: 80, height: 60, flexDirection: 'row', flex: 1, justifyContent: 'space-around' }}>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
               <Text></Text>
             </View>

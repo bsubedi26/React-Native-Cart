@@ -9,25 +9,35 @@ const { width, height } = Dimensions.get('window')
 
 class Phones extends React.Component {
 
-    state = {
-        quantity: "1"
+    componentWillMount() {
+        this.props.products.forEach((item, idx) => {
+            const quantityId = `quantity_${item.id}`
+            this.setState({
+                [quantityId]: "1"
+            })
+        })
     }
 
     handleAddCart(product) {
-        const quantity = parseInt(this.state.quantity)
+        const quantityId = `quantity_${product.id}`
+        const quantity = parseInt(this.state[quantityId])
         this.props.cartAction.add(product, quantity)
     }
 
     increment = (product) => {
+        const quantityId = `quantity_${product.id}`
+        
         this.setState({
-            quantity: (parseInt(this.state.quantity) + 1).toString()
+            [quantityId]: (parseInt(this.state[quantityId]) + 1).toString()
         })
     }
 
     decrement (product) {
-        if (this.state.quantity == 1) return
+        const quantityId = `quantity_${product.id}`
+        
+        if (this.state[quantityId] == 1) return
         this.setState({
-            quantity: (parseInt(this.state.quantity) - 1).toString()
+            [quantityId]: (parseInt(this.state[quantityId]) - 1).toString()
         })
     }
 
@@ -38,9 +48,12 @@ class Phones extends React.Component {
 
     render() {
         const { products } = this.props
+
         return (
             <ScrollView >
                 {products.map((item, i) => {
+                    const quantityId = `quantity_${item.id}`
+
                     return (
                         <Container key={item.id}>
                             <Name>{item.name}</Name>
@@ -54,7 +67,7 @@ class Phones extends React.Component {
                                     underlineColorAndroid='transparent'
                                     style={{ textAlign: 'center', fontSize: 16 }}
                                     keyboardType='numeric'
-                                    value={this.state.quantity}
+                                    value={this.state[quantityId]}
                                     editable={false}
                                 />
                                 <Entypo size={22} onPress={this.increment.bind(this, item)} name="squared-plus"></Entypo>
