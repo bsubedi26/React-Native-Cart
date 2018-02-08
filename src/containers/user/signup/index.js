@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components/native'
 import { View, Dimensions, ToastAndroid } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { connect } from 'react-redux'
@@ -8,13 +7,12 @@ import { bindActionCreators } from 'redux'
 
 import CardContent from 'src/components/CardContent'
 import Indicator from 'src/components/Indicator'
-import LoginForm from 'src/components/form/user';
+import SignupForm from 'src/components/form/user'
 
 import { loading } from 'src/store/indicator/action'
 import delay from 'src/util/delay'
 import app from 'src/util/feathers'
-
-const { width, height } = Dimensions.get('window')
+import { ErrorContainer, ErrorText } from '../common'
 
 class SettingsScreen extends React.Component {
     state = {
@@ -38,19 +36,18 @@ class SettingsScreen extends React.Component {
                 // setSubmitting(false)
                 // ToastAndroid.show(`Successfully created: ${res.email}!`, ToastAndroid.SHORT);
                 // dispatch({ type: 'USER_SET', payload: user })
-                navigation.navigate('Products')
+                navigation.navigate('Login')
             })
             .catch(error => {
                 dispatch(loading(false))
-                // setSubmitting(false)
-                this.setState({ error: error })
+                this.setState({ error })
                 // ToastAndroid.show('There was an error. Try again!', ToastAndroid.SHORT);
-                console.log('.catch ', error)
+                return Promise.reject(error)
             })
     }
 
     renderForm() {
-        return <LoginForm handleSubmit={this.handleSubmit} />
+        return <SignupForm title="Signup Below" handleSubmit={this.handleSubmit} />
     }
     renderError() {
         return (
@@ -70,21 +67,8 @@ class SettingsScreen extends React.Component {
     }
 }
 
-const ErrorContainer = styled.View`
-    backgroundColor: red;
-    height: 70px;
-    alignItems: center;
-    justifyContent: center;
-`
-const ErrorText = styled.Text`
-    fontSize: 22px;
-    color: white;
-`
-
-const mapState = (state) => {
-    return {
-        indicator: state.indicator
-    }
-}
+const mapState = (state) => ({
+    indicator: state.indicator
+})
 
 export default connect(mapState)(SettingsScreen)

@@ -1,43 +1,38 @@
 import React from 'react'
-import { TouchableHighlight, Text, TextInput, FlatList, ScrollView, View, Image, Dimensions } from 'react-native'
+import { TouchableHighlight, Text, TextInput, FlatList, ScrollView, View, Image } from 'react-native'
 import { Card } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons'
 import Colors from 'src/themes/Colors'
+import Metrics from 'src/themes/Metrics'
 import { Name, FlexRowCenter, WhiteSpace, Container, Price } from './common'
 
-const { width, height } = Dimensions.get('window')
-
 class Phones extends React.Component {
-
-    componentWillMount() {
-        this.props.products.forEach((item, idx) => {
-            const quantityId = `quantity_${item.id}`
-            this.setState({
-                [quantityId]: "1"
-            })
-        })
+    state = {
+        quantityById: {}
     }
 
     handleAddCart(product) {
-        const quantityId = `quantity_${product.id}`
-        const quantity = parseInt(this.state[quantityId])
+        const quantity = parseInt(this.state.quantityById[product.id]) || 1
         this.props.cartAction.add(product, quantity)
     }
 
     increment = (product) => {
-        const quantityId = `quantity_${product.id}`
-        
+        const newQuantity = (parseInt(this.state.quantityById[product.id]) + 1 || "2").toString()
         this.setState({
-            [quantityId]: (parseInt(this.state[quantityId]) + 1).toString()
+            quantityById: {
+                ...this.state.quantityById,
+                [product.id]: newQuantity
+            }
         })
     }
 
     decrement (product) {
-        const quantityId = `quantity_${product.id}`
-        
-        if (this.state[quantityId] == 1) return
+        const newQuantity = (parseInt(this.state.quantityById[product.id]) - 1 || "1").toString()
         this.setState({
-            [quantityId]: (parseInt(this.state[quantityId]) - 1).toString()
+            quantityById: {
+                ...this.state.quantityById,
+                [product.id]: newQuantity
+            }
         })
     }
 
@@ -67,7 +62,8 @@ class Phones extends React.Component {
                                     underlineColorAndroid='transparent'
                                     style={{ textAlign: 'center', fontSize: 16 }}
                                     keyboardType='numeric'
-                                    value={this.state[quantityId]}
+                                    // value={this.state[quantityId]}
+                                    value={this.state.quantityById[item.id] || "1"}
                                     editable={false}
                                 />
                                 <Entypo size={22} onPress={this.increment.bind(this, item)} name="squared-plus"></Entypo>
@@ -87,7 +83,7 @@ class Phones extends React.Component {
                             <WhiteSpace />
                             <Price>${item.price}</Price>
                             <WhiteSpace />
-                            <Text style={{ width: width - 50, lineHeight: 30 }}>{item.info}</Text>
+                            <Text style={{ width: Metrics.screenWidth - 50, lineHeight: 30 }}>{item.info}</Text>
                         </Container>
                     )
                 })}

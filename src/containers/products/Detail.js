@@ -34,11 +34,12 @@ class DetailScreen extends React.Component {
             quantity: result.toString()
         })
     }
-
+    
     render() {
         const { navigation } = this.props
         const { product } = navigation.state.params
 
+        console.log(navigation.state)
         return (
             <ScrollView contentContainerStyle={s.container}>
 

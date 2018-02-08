@@ -3,12 +3,13 @@ import { Button } from 'react-native'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { DrawerNavigator, StackNavigator, TabNavigator, addNavigationHelpers } from 'react-navigation';
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons';
 
 import Colors from 'src/themes/Colors';
 import ProductNavigator from './product';
 import CartNavigator from './cart';
-import LoginNavigator from './login';
+import LoginNavigator from './user/login';
+import SignupNavigator from './user/signup';
 import CurrencyNavigator from './currency';
 
 const tabRoutes = {
@@ -40,20 +41,6 @@ const tabRoutes = {
       ),
     }
   },
-  // Login: {
-  //   screen: Login,
-  //   path: '',
-  //   navigationOptions: {
-  //     tabBarLabel: 'Login',
-  //     tabBarIcon: ({ tintColor, focused }) => (
-  //       <Ionicons
-  //         name={focused ? 'ios-settings' : 'ios-settings-outline'}
-  //         size={26}
-  //         style={{ color: tintColor }}
-  //       />
-  //     ),
-  //   }
-  // },
 }
 
 const tabConfig = {
@@ -74,6 +61,13 @@ const tabConfig = {
 
 const TabStack = TabNavigator(tabRoutes, tabConfig);
 
+const drawerConfig = {
+  contentOptions: {
+    labelStyle: {
+      fontSize: 16
+    }
+  }
+}
 export const AppNavigator = DrawerNavigator({
   Products: {
     screen: TabStack
@@ -81,7 +75,10 @@ export const AppNavigator = DrawerNavigator({
   Login: {
     screen: LoginNavigator
   },
-});
+  Signup: {
+    screen: SignupNavigator
+  },
+}, drawerConfig);
 // export const AppNavigator = TabNavigator(tabRoutes, navConfig);
 
 class AppWithNavigationState extends React.Component {

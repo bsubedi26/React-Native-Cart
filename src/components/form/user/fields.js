@@ -2,11 +2,12 @@ import React from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import classNames from 'classnames';
 import Colors from 'src/themes/Colors';
-import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+import { FormInput, FormValidationMessage } from 'react-native-elements'
 
 const style = StyleSheet.create({
     label: {
-        fontSize: 18
+        fontSize: 18,
+        opacity: 0.5
     },
     container: {
         justifyContent: 'center',
@@ -43,20 +44,24 @@ const style = StyleSheet.create({
     whiteSpace: {
         padding: 10
     },
-    label: {
-        fontSize: 30
+    whiteSpaceSm: {
+        padding: 5
     }
+    
 });
+
 
 // Our inner form component which receives our form's state and updater methods as props
 const FormFields = (props) => {
-    const { values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting, btnBlock, buttonWidth25 } = props;
+    const { values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting, title } = props;
 
     return (
         <View style={style.container}>
-            {/* {errors.message ? <div className="alert alert-danger" role="alert">{errors.message}</div> : null} */}
             <View>
-                <FormLabel style={style.label}>Email Address</FormLabel>
+                <Text style={style.title}>{title}</Text>
+
+                <Text style={style.label}>Email Address</Text>
+                <View style={style.whiteSpaceSm}></View>
                 <View style={style.borderAll}>
                     <FormInput underlineColorAndroid='transparent' onChangeText={text => props.setFieldValue('email', text)} />
                 </View>
@@ -64,7 +69,8 @@ const FormFields = (props) => {
 
                 <View style={style.whiteSpace} />
 
-                <FormLabel style={style.label}>Password</FormLabel>
+                <Text style={style.label}>Password</Text>
+                <View style={style.whiteSpaceSm}></View>
                 <View style={style.borderAll}>
                     <FormInput underlineColorAndroid='transparent' onChangeText={password => props.setFieldValue('password', password)} />
                 </View>  

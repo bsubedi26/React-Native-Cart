@@ -15,8 +15,8 @@ const FormContainer = withFormik({
         props.handleSubmit(values, setSubmitting)
             .then(data => { })
             .catch(err => {
-                setErrors(err);
-                setSubmitting(false);
+                // setErrors(err);
+                // setSubmitting(false);
             })
     },
 })
