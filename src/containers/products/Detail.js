@@ -1,16 +1,16 @@
 import React from 'react'
-import { TouchableHighlight, StyleSheet, Text, TextInput, Image, ScrollView, Dimensions } from 'react-native'
+import { TouchableHighlight, StyleSheet, Text, TextInput, Image, ScrollView, ToastAndroid } from 'react-native'
 import styled from 'styled-components/native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Ionicons, Entypo } from '@expo/vector-icons'
 
 import * as cartAction from 'src/store/cart/action'
+import Metrics from 'src/themes/Metrics'
 import Colors from 'src/themes/Colors'
 import { Name, FlexRowCenter, WhiteSpace, Container, Price } from './common'
 
 
-const { width, height } = Dimensions.get('window')
 class DetailScreen extends React.Component {
     state = {
         quantity: "1"
@@ -19,6 +19,7 @@ class DetailScreen extends React.Component {
     handleAddCart = (phone) => {
         const quantity = parseInt(this.state.quantity)
         this.props.cartAction.add(phone, quantity)
+        ToastAndroid.show('Successfully added item to cart!', ToastAndroid.SHORT)
     }
 
     _increment = () => {
@@ -39,7 +40,6 @@ class DetailScreen extends React.Component {
         const { navigation } = this.props
         const { product } = navigation.state.params
 
-        console.log(navigation.state)
         return (
             <ScrollView contentContainerStyle={s.container}>
 
@@ -71,7 +71,7 @@ class DetailScreen extends React.Component {
                 <WhiteSpace />
                 <Price>${product.price}</Price>
                 <WhiteSpace />
-                <Text style={{ width: width - 50, lineHeight: 30 }}>{product.info}</Text>
+                <Text style={{ width: Metrics.screenWidth - 50, lineHeight: 30 }}>{product.info}</Text>
 
             </ScrollView>
         )

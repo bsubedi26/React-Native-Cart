@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Image, ScrollView, View, Text, TextInput, TouchableHighlight } from 'react-native'
+import { Image, ScrollView, View, Text, TextInput, TouchableHighlight, ToastAndroid } from 'react-native'
 import { Entypo, Ionicons } from '@expo/vector-icons'
 
 import { bindActionCreators } from 'redux'
@@ -22,6 +22,7 @@ class CartScreen extends React.Component {
   removeFromCart(item) {
     const { dispatch } = this.props
     dispatch(remove(item))
+    ToastAndroid.show('Successfully remove item from cart!', ToastAndroid.SHORT)
   }
 
   increment(item) {

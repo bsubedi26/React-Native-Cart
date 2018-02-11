@@ -17,4 +17,9 @@ const app = feathers()
       storage: AsyncStorage
     }));
 
+app.io.on('connect_error', error => {
+  console.log('Could not connec to server. Closing socket connection.');
+  app.io.close();
+})
+
 export default app
