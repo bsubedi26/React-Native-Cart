@@ -1,5 +1,5 @@
 import React from 'react'
-import { ToastAndroid, TouchableHighlight, Text, TextInput, FlatList, ScrollView, View, Image } from 'react-native'
+import { CameraRoll, ToastAndroid, TouchableHighlight, Text, TextInput, FlatList, ScrollView, View, Image } from 'react-native'
 import { Card } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons'
 import Colors from 'src/themes/Colors'
@@ -11,7 +11,7 @@ class Phones extends React.Component {
         quantityById: {}
     }
 
-    handleAddCart(product) {
+    async handleAddCart(product) {
         const quantity = parseInt(this.state.quantityById[product.id]) || 1
         this.props.cartAction.add(product, quantity)
         ToastAndroid.show('Successfully added item to cart!', ToastAndroid.SHORT)

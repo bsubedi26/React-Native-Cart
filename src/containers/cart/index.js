@@ -22,7 +22,7 @@ class CartScreen extends React.Component {
   removeFromCart(item) {
     const { dispatch } = this.props
     dispatch(remove(item))
-    ToastAndroid.show('Successfully remove item from cart!', ToastAndroid.SHORT)
+    ToastAndroid.show('Successfully removed item from cart!', ToastAndroid.SHORT)
   }
 
   increment(item) {
