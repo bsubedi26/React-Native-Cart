@@ -4,7 +4,6 @@ A react native mobile application of a client side shopping cart.
 ## Screenshots
 ![Alt text](screenshots/product_list.JPG?raw=true "Product List")
 ![Alt text](screenshots/cart.JPG?raw=true "Cart Checkout")
-![Alt text](screenshots/cart_removed.JPG?raw=true "Cart Checkout Removed")
 
 ## Available Scripts
 
